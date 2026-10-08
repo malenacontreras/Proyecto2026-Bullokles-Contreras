@@ -63,9 +63,11 @@ Una vez creado, el sistema genera automáticamente los partidos según el format
 
 MatchPoint permite organizar torneos utilizando diferentes modalidades:
 
-**Eliminación directa**: La dupla que pierde queda eliminada y la ganadora avanza a la siguiente ronda.
-**Todos contra todos**: Todas las duplas juegan entre sí y se genera una tabla de posiciones según los resultados.
-**Fase de grupos + eliminación**: Las duplas se dividen en grupos, juegan una primera fase y luego continúan mediante cruces de eliminación.
+| Formato                          | Descripción                                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Eliminación directa**          | La dupla que pierde queda eliminada y la ganadora avanza a la siguiente ronda.                             |
+| **Todos contra todos**           | Todas las duplas juegan entre sí y se genera una tabla de posiciones según los resultados.                 |
+| **Fase de grupos + eliminación** | Las duplas se dividen en grupos, juegan una primera fase y luego continúan mediante cruces de eliminación. |
 
 ## Tecnologías utilizadas
 
