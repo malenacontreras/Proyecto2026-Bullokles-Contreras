@@ -11,11 +11,11 @@
 * Documentación
 
 ## Sketch
-- [ ] Versión Desktop y Mobile
-- [ ] Guardado en formato PNG, JPG ó PDF
-- [ ] Dentro de una carpeta llamada "Sketch"
-- [ ] Tener en cuenta los mensajes de error para el usuario
-- [ ] Debe ser realizado con el template
+- [X] Versión Desktop y Mobile
+- [X] Guardado en formato PNG, JPG ó PDF
+- [X] Dentro de una carpeta llamada "Sketch"
+- [X] Tener en cuenta los mensajes de error para el usuario
+- [X] Debe ser realizado con el template
 
 ## Wireframe/Mockup
 - [ ] Dibujado con algún programa como: Figma, AdobeXD, Canvas, Draw.io en Drive, Pencil Project, Mockups, NinjaMock, o similares.
