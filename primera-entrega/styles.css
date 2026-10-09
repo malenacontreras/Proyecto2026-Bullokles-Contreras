@@ -829,7 +829,7 @@ tr.q td:first-child {
   color: var(--muted);
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.04rem;
   font-weight: 700;
 }
 

@@ -52,6 +52,7 @@
       <section class="card">
         <h3>👥 Duplas (<span id="cnt">0</span>)</h3>
         <div class="row">
+          <label for="t" class="sr-only">Nombre de la dupla</label>
           <input id="t" size="40" maxlength="40" placeholder="Nombre de la dupla, ej: Gómez / Pérez" />
           <button id="add" onclick="agregarDupla()">Agregar</button>
         </div>
@@ -121,7 +122,7 @@
       <div class="chip"><span data-f="t"></span><b onclick="quitarDupla(this)">×</b></div>
     </template>
 
-<template id="tpl-match">
+    <template id="tpl-match">
       <div class="m">
         <small data-f="lbl"></small>
         <div class="hd"><span></span><span>Sets</span></div>
@@ -264,10 +265,10 @@
       </div>
     </template>
 
-<template id="tpl-stat">
+    <template id="tpl-stat">
       <div class="stat"><span data-f="k"></span><b data-f="v"></b></div>
     </template>
-  </div> 
+  </div>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -282,4 +283,5 @@
 
   <script src="organizar.js"></script>
 </body>
+
 </html>
