@@ -38,10 +38,10 @@
         <label for="n">Nombre del torneo</label>
         <input id="n" size="30" maxlength="50" placeholder="Copa Verano 2026"
           oninput="actualizarCampo('n', this.value)" />
-        <label for="d">Descripción</label>
+        <label for="d">Descripción (opcional)</label>
         <textarea id="d" rows="2" maxlength="200" placeholder="Torneo amistoso, categoría 6ta, premio: un asado..."
           oninput="actualizarCampo('d', this.value)"></textarea>
-        <label for="p">Lugar</label>
+        <label for="p">Lugar (opcional)</label>
         <input id="p" size="40" maxlength="100" placeholder="Ej: Padel Club Palermo, Buenos Aires"
           oninput="actualizarCampo('p', this.value)" onchange="dibujarMapa()" />
         <iframe id="mp" hidden loading="lazy" title="Mapa del lugar"></iframe>
@@ -52,7 +52,6 @@
       <section class="card">
         <h3>👥 Duplas (<span id="cnt">0</span>)</h3>
         <div class="row">
-          <label for="t" hidden>Nombre de la dupla</label>
           <input id="t" size="40" maxlength="40" placeholder="Nombre de la dupla, ej: Gómez / Pérez" />
           <button id="add" onclick="agregarDupla()">Agregar</button>
         </div>
@@ -122,21 +121,23 @@
       <div class="chip"><span data-f="t"></span><b onclick="quitarDupla(this)">×</b></div>
     </template>
 
-    <template id="tpl-match">
+<template id="tpl-match">
       <div class="m">
         <small data-f="lbl"></small>
         <div class="hd"><span></span><span>Sets</span></div>
         <div class="tr" data-side="a">
-          <span class="n" data-f="na"></span> >
-          <label for="set-a" hidden>Sets de la dupla A</label>
+          <span class="n" data-f="na"></span>
+          <span class="arrow"></span>
+          <label for="set-a" class="sr-only">Sets de la dupla A</label>
           <input id="set-a" class="sc" type="number" min="0" max="2" inputmode="numeric" onchange="cargarSet(this)" />
         </div>
         <div class="tr" data-side="b">
-          <span class="n" data-f="nb"></span> >
-          <label for="set-b" hidden>Sets de la dupla B</label>
+          <span class="n" data-f="nb"></span>
+          <span class="arrow"></span>
+          <label for="set-b" class="sr-only">Sets de la dupla B</label>
           <input id="set-b" class="sc" type="number" min="0" max="2" inputmode="numeric" onchange="cargarSet(this)" />
         </div>
-        <small class="hint" hidden>Mejor de 3 sets: alguna dupla tiene que llegar a 2.</small>
+        <small class="hint" hidden></small>
       </div>
     </template>
 
@@ -263,22 +264,22 @@
       </div>
     </template>
 
-    <template id="tpl-stat">
+<template id="tpl-stat">
       <div class="stat"><span data-f="k"></span><b data-f="v"></b></div>
     </template>
+  </div> 
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-links">
-          <a href="index.html">Inicio</a>
-          <a href="torneos.html">Torneos</a>
-          <a href="organizar.html">Organizar torneo</a>
-        </div>
-        <span>© 2026 MatchPoint</span>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="torneos.html">Torneos</a>
+        <a href="organizar.html">Organizar torneo</a>
       </div>
-    </footer>
+      <span>© 2026 MatchPoint</span>
+    </div>
+  </footer>
 
-    <script src="organizar.js"></script>
+  <script src="organizar.js"></script>
 </body>
-
 </html>

@@ -628,9 +628,14 @@ iframe {
 .tr,
 .hd {
   display: grid;
-  grid-template-columns: 1fr 60px;
+  grid-template-columns: 1fr auto 60px; 
   gap: 12px;
   align-items: center;
+}
+
+.hd {
+  grid-template-columns: 1fr 60px;
+  justify-items: end;
 }
 
 .hd {
@@ -881,6 +886,18 @@ ul {
 .footer-inner>span {
   grid-column: 3;
   justify-self: end;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 
