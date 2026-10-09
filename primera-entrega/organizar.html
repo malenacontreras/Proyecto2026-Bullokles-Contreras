@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="author" content="Contreras Malena">
+  <meta name="author" content="Bullokles Justina">
+  <meta name="description"
+    content="Organizá tu torneo de pádel: cargá las duplas, elegí el formato y seguí los resultados, posiciones y análisis final.">
+  <meta name="keywords"
+    content="pádel, torneos, organizar torneo, duplas, eliminación directa, fase de grupos, todos contra todos">
+  <title>Organizar torneos</title>
+  <link rel="icon" type="image/png" href="imagenes/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="imagenes/logo.png" alt="Logo de MatchPoint" /></span>
+        <h1>MatchPoint</h1>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="torneos.html">Torneos</a>
+        <a href="organizar.html" class="active">Organizar torneo</a>
+      </nav>
+    </header>
+
+    <div id="setup">
+      <section class="card court">
+        <h2>Nuevo torneo</h2>
+        <label for="n">Nombre del torneo</label>
+        <input id="n" size="30" maxlength="50" placeholder="Copa Verano 2026"
+          oninput="actualizarCampo('n', this.value)" />
+        <label for="d">Descripción</label>
+        <textarea id="d" rows="2" maxlength="200" placeholder="Torneo amistoso, categoría 6ta, premio: un asado..."
+          oninput="actualizarCampo('d', this.value)"></textarea>
+        <label for="p">Lugar</label>
+        <input id="p" size="40" maxlength="100" placeholder="Ej: Padel Club Palermo, Buenos Aires"
+          oninput="actualizarCampo('p', this.value)" onchange="dibujarMapa()" />
+        <iframe id="mp" hidden loading="lazy" title="Mapa del lugar"></iframe>
+        <div id="ml" class="sub mt" hidden>
+          <a id="mlink" target="_blank" rel="noopener">Abrir en Google Maps ↗</a>
+        </div>
+      </section>
+      <section class="card">
+        <h3>👥 Duplas (<span id="cnt">0</span>)</h3>
+        <div class="row">
+          <label for="t" hidden>Nombre de la dupla</label>
+          <input id="t" size="40" maxlength="40" placeholder="Nombre de la dupla, ej: Gómez / Pérez" />
+          <button id="add" onclick="agregarDupla()">Agregar</button>
+        </div>
+        <div class="chips" id="chips"></div>
+        <button class="ghost mt" id="demo"
+          data-duplas="Gómez / Pérez|Lugano / Díaz|Fernández / Ruiz|Sosa / Molina|Navarro / Gil|Castro / Vega|Ortiz / Rey|Silva / Luna"
+          onclick="cargarEjemplo()">
+          Cargar 8 duplas de ejemplo
+        </button>
+      </section>
+      <section class="card">
+        <h3>Tipo de torneo</h3>
+        <div class="types" id="types">
+          <div class="type sel" data-type="ko" onclick="elegirTipo(this)">
+            <h4>Eliminación directa</h4>
+            <p>Perdés y quedás afuera.</p>
+          </div>
+          <div class="type" data-type="groups" onclick="elegirTipo(this)">
+            <h4>Fase de grupos + final</h4>
+            <p>
+              Grupos todos contra todos; clasifican 2 por grupo a eliminación
+              directa.
+            </p>
+          </div>
+          <div class="type" data-type="rr" onclick="elegirTipo(this)">
+            <h4>Todos contra todos</h4>
+            <p>Todas las duplas se enfrentan. Gana quien suma más puntos.</p>
+          </div>
+        </div>
+        <label class="check" for="r"><input type="checkbox" id="r" checked
+            onchange="actualizarCampo('r', this.checked)" />
+          Sortear el orden al azar</label>
+        <button class="big mt" id="go" onclick="crearTorneo()">Generar torneo</button>
+      </section>
+    </div>
+
+    <div id="app" hidden>
+      <section class="card court">
+        <div class="row between flexwrap">
+          <div>
+            <h2 data-f="name"></h2>
+            <div class="sub" data-f="meta"></div>
+          </div>
+          <button class="ghost" id="reset" onclick="nuevoTorneo()">Nuevo torneo</button>
+        </div>
+        <p data-f="desc"></p>
+        <div class="sub" id="place" hidden>
+          📍 <span data-f="place"></span> ·
+          <a id="plink" target="_blank" rel="noopener">Ver en Google Maps ↗</a>
+        </div>
+        <iframe id="amap" hidden loading="lazy" title="Mapa del lugar"></iframe>
+        <div class="bar"><i id="fill"></i></div>
+        <div class="sub mts">
+          <span data-f="prog"></span><span id="fin" hidden> · ¡Torneo finalizado!</span>
+        </div>
+      </section>
+      <nav class="tabs" id="tabs">
+        <button data-tab="a" data-rr="Partidos" data-groups="Grupos" data-ko="Cuadro"
+          onclick="cambiarTab('a')">Partidos</button>
+        <button data-tab="b" data-tipos="rr groups" data-rr="Posiciones" data-groups="Fase final"
+          onclick="cambiarTab('b')">Posiciones</button>
+        <button data-tab="z" onclick="cambiarTab('z')">Análisis</button>
+      </nav>
+      <div id="body"></div>
+    </div>
+    <template id="tpl-chip">
+      <div class="chip"><span data-f="t"></span><b onclick="quitarDupla(this)">×</b></div>
+    </template>
+
+    <template id="tpl-match">
+      <div class="m">
+        <small data-f="lbl"></small>
+        <div class="hd"><span></span><span>Sets</span></div>
+        <div class="tr" data-side="a">
+          <span class="n" data-f="na"></span> >
+          <label for="set-a" hidden>Sets de la dupla A</label>
+          <input id="set-a" class="sc" type="number" min="0" max="2" inputmode="numeric" onchange="cargarSet(this)" />
+        </div>
+        <div class="tr" data-side="b">
+          <span class="n" data-f="nb"></span> >
+          <label for="set-b" hidden>Sets de la dupla B</label>
+          <input id="set-b" class="sc" type="number" min="0" max="2" inputmode="numeric" onchange="cargarSet(this)" />
+        </div>
+        <small class="hint" hidden>Mejor de 3 sets: alguna dupla tiene que llegar a 2.</small>
+      </div>
+    </template>
+
+    <template id="tpl-bye">
+      <div class="m">
+        <small data-f="lbl"></small>
+        <div class="bye" data-f="txt"></div>
+      </div>
+    </template>
+
+    <template id="tpl-bracket">
+      <div class="bracket"></div>
+    </template>
+
+    <template id="tpl-col">
+      <div class="col">
+        <h3 data-f="title"></h3>
+        <div data-slot="cards"></div>
+      </div>
+    </template>
+
+    <template id="tpl-fechas">
+      <div class="two"></div>
+    </template>
+
+    <template id="tpl-fecha">
+      <div>
+        <h3 data-f="title"></h3>
+        <div data-slot="cards"></div>
+      </div>
+    </template>
+
+    <template id="tpl-group">
+      <section class="card">
+        <h3 data-f="title"></h3>
+        <div data-slot="table"></div>
+        <div class="two mt" data-slot="cards"></div>
+      </section>
+    </template>
+
+    <template id="tpl-table">
+      <div class="tw">
+        <table>
+          <!-- Se agrega el caption obligatorio para accesibilidad -->
+          <caption hidden>Tabla de posiciones del torneo</caption>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="l">Dupla</th>
+              <th>PJ</th>
+              <th>G</th>
+              <th>P</th>
+              <th>Sets</th>
+              <th>Dif.</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </template>
+
+    <template id="tpl-row">
+      <tr>
+        <td data-f="pos"></td>
+        <td class="l" data-f="name"></td>
+        <td data-f="pj"></td>
+        <td data-f="g"></td>
+        <td data-f="p"></td>
+        <td data-f="sets"></td>
+        <td data-f="dif"></td>
+        <td><b data-f="pts"></b></td>
+      </tr>
+    </template>
+
+    <template id="tpl-standings">
+      <section class="card">
+        <div data-slot="table"></div>
+        <p class="sub">
+          3 puntos por victoria. Desempate: diferencia de sets y luego sets
+          ganados.
+        </p>
+      </section>
+    </template>
+
+    <template id="tpl-kowait">
+      <section class="card">
+        <p>
+          Clasifican los 2 primeros de cada grupo.
+          <span data-state="ok" hidden>¡Fase de grupos completa!</span>
+          <span data-state="wait">Cargá todos los resultados de grupos para continuar.</span>
+        </p>
+        <button id="startko" onclick="startKO()">Generar fase final →</button>
+      </section>
+    </template>
+
+    <template id="tpl-pending">
+      <section class="card">
+        <h3>📊 Análisis</h3>
+        <p class="sub">
+          El análisis aparecerá cuando termine el torneo. ¡Seguí cargando
+          resultados!
+        </p>
+      </section>
+    </template>
+
+    <template id="tpl-analysis">
+      <div>
+        <section class="card court champ">
+          <div class="cup">🏆</div>
+          <div class="sub">CAMPEONES DE <span data-f="kicker"></span></div>
+          <h2 data-f="champ"></h2>
+          <p>Subcampeón: <span data-f="runner"></span></p>
+        </section>
+        <section class="card">
+          <h3>Resumen del torneo</h3>
+          <p data-f="story"></p>
+          <div class="stats" data-slot="stats"></div>
+        </section>
+        <section class="card">
+          <h3>Ranking general</h3>
+          <div data-slot="rank"></div>
+        </section>
+      </div>
+    </template>
+
+    <template id="tpl-stat">
+      <div class="stat"><span data-f="k"></span><b data-f="v"></b></div>
+    </template>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <a href="index.html">Inicio</a>
+          <a href="torneos.html">Torneos</a>
+          <a href="organizar.html">Organizar torneo</a>
+        </div>
+        <span>© 2026 MatchPoint</span>
+      </div>
+    </footer>
+
+    <script src="organizar.js"></script>
+</body>
+
+</html>
