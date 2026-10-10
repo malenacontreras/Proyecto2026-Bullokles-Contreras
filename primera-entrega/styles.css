@@ -888,7 +888,8 @@ ul {
   justify-self: end;
 }
 
-.sr-only {
+.sr-only,
+.visually-hidden  {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -976,5 +977,276 @@ ul {
 @media (max-width: 800px) {
   .two {
     grid-template-columns: 1fr;
+  }
+}
+
+
+.page-shell {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.page-head {
+  margin-bottom: 30px;
+}
+
+.page-title {
+  font-size: 36px;
+  margin: 0 0 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.filter-bar {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.filter-bar .search {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  border: 0;
+  padding: 12px 15px;
+  outline: 0;
+}
+
+.filter-bar select {
+  width: auto;
+}
+
+#filtro-fecha {
+  width: 190px;
+  border: none;
+  border-left: 1px solid var(--line);
+  outline: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+.filter-bar select {
+  border: 0;
+  border-left: 1px solid var(--line);
+  padding: 0 20px;
+  color: var(--muted);
+  background: #fff;
+  outline: none;
+}
+
+.btn-limpiar {
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  padding: 0 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-limpiar:hover {
+  color: var(--ink);
+}
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.sin-resultados {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 80px 0;
+  text-align: center;
+  color: var(--muted);
+  display: block;
+}
+
+.sin-resultados h3 {
+  color: var(--ink);
+  font-size: 22px;
+  margin: 0 0 12px;
+}
+
+.sin-resultados p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tournament-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tournament-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px #0c1b1612;
+}
+
+.card-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 17px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.level {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #edf7d8;
+  color: #4d681c;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.level-blue {
+  background: #dceefb;
+  color: #1d5f8a;
+}
+
+.level-green {
+  background: #edf7d8;
+  color: #4d681c;
+}
+
+.level-orange {
+  background: #fbe6d4;
+  color: #99521a;
+}
+
+
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 27, 22, 0.75);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 20;
+}
+
+#overlay.show {
+  display: flex;
+}
+
+.modal {
+  background: #fff;
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-body h2 {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.modal-body p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Torneos en celular */
+@media (max-width: 760px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    display: grid;
+  }
+
+  .filter-bar select,
+  #filtro-fecha,
+  .btn-limpiar {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 13px 10px;
+    width: 100%;
+    text-align: left;
   }
 }
