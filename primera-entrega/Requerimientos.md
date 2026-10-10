@@ -41,17 +41,17 @@
 
 ## Proyecto general
 
-- [ ] NO está permitido descargar un TEMPLATE (diseño 100% desde cero)
-- [ ] La página principal debe llamarse index
-- [ ] La estructura del proyecto debe ser adecuada (crear una carpeta para las imágenes, otra para los sketch/mockups).
-- [ ] Identar correctamente el código
-- [ ] No debe haber errores presentes (en Webstorm _Code_ > _Inspect Code_ para verificar que no haya errores)
-- [ ] Se debe emplear favicon
-- [ ] Emplear alguna fuente de google fonts o subir al proyecto alguna fuente externa (aunque sea para un título)
-- [ ] Debe haber navegación entre todas las páginas
-- [ ] No debe haber errores de ortografía en el contenido visual
-- [ ] "Lorem ipsum" es sólo válido para los prototipos, NO para la página
-- [ ] No debe existir código comentado
+- [x] NO está permitido descargar un TEMPLATE (diseño 100% desde cero)
+- [x] La página principal debe llamarse index
+- [x] La estructura del proyecto debe ser adecuada (crear una carpeta para las imágenes, otra para los sketch/mockups).
+- [x] Identar correctamente el código
+- [x] No debe haber errores presentes (en Webstorm _Code_ > _Inspect Code_ para verificar que no haya errores)
+- [x] Se debe emplear favicon
+- [x] Emplear alguna fuente de google fonts o subir al proyecto alguna fuente externa (aunque sea para un título)
+- [x] Debe haber navegación entre todas las páginas
+- [x] No debe haber errores de ortografía en el contenido visual
+- [x] "Lorem ipsum" es sólo válido para los prototipos, NO para la página
+- [x] No debe existir código comentado
 
 ## Sobre el HTML
 
