@@ -5,7 +5,10 @@
  * @return {void}
  */
 const aplicarFiltros = () => {
-  const termino = document.getElementById("buscador").value.toLowerCase();
+  const termino = document
+    .getElementById("buscador")
+    .value.toLowerCase()
+    .trim();
   const mes = document.getElementById("filtro-fecha").value;
   const nivel = document.getElementById("filtro-nivel").value;
   const ubicacion = document.getElementById("filtro-ubicacion").value;

@@ -15,11 +15,7 @@
 }
 
 [hidden] {
-  body [hidden],
-  .wrap [hidden],
-  .card [hidden] {
-    display: none;
-  }
+  display: none;
 }
 
 html {
@@ -214,9 +210,6 @@ main {
   padding: 84px 8%;
 }
 
-.section.mist {
-  background: var(--mist);
-}
 
 .section-heading {
   text-align: center;
@@ -324,9 +317,6 @@ main {
   font-weight: 800;
 }
 
-.wrap h1 span {
-  color: var(--lime);
-}
 
 .sub {
   color: var(--muted);
@@ -551,13 +541,6 @@ iframe {
   border-radius: 10px;
   margin-top: 12px;
   background: var(--mist);
-}
-
-.err {
-  color: var(--bad);
-  margin-top: 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
 }
 
 .tabs {
@@ -840,20 +823,6 @@ tr.q td:first-child {
   color: var(--ink);
 }
 
-ul {
-  padding-left: 20px;
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 0.95rem;
-}
-
-#cf {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9;
-}
 
 .site-footer {
   background: var(--ink);
@@ -870,10 +839,6 @@ ul {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-}
-
-.footer-inner .brand {
-  color: #fff;
 }
 
 .footer-links {
@@ -998,9 +963,12 @@ ul {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
 
+.sin-resultados.hidden {
+  display: none;
+}
 
 .filter-bar {
   max-width: 1100px;
@@ -1022,9 +990,6 @@ ul {
   outline: 0;
 }
 
-.filter-bar select {
-  width: auto;
-}
 
 #filtro-fecha {
   width: 190px;
@@ -1038,6 +1003,7 @@ ul {
 }
 
 .filter-bar select {
+  width: auto;
   border: 0;
   border-left: 1px solid var(--line);
   padding: 0 20px;
@@ -1172,7 +1138,7 @@ ul {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 20;
+  z-index: 200;
 }
 
 #overlay.show {
@@ -1230,7 +1196,7 @@ ul {
   }
 }
 
-/* Torneos en celular */
+
 @media (max-width: 760px) {
   .cards-grid {
     grid-template-columns: 1fr;
