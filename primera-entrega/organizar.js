@@ -307,8 +307,10 @@ const validarTorneo = () => {
   const min = S.type === 'groups' ? 6 : 3, n = S.teams.length;
   if (!S.n.trim()) {
     alert('Poné un nombre al torneo.');
-    S.n = ''; $('#n').value = ''; $('#n').focus();
-    return false;
+const $n = $('#n');
+S.n = ''; 
+$n.value = ''; 
+$n.focus();    return false;
   }
   if (n < min) {
     alert(`Para este formato necesitás al menos ${min} duplas (tenés ${n}).`);
