@@ -132,7 +132,7 @@ main {
   padding: 80px 11%;
   background:
     linear-gradient(90deg, rgba(12, 27, 22, 0.92), rgba(12, 27, 22, 0.35)),
-    url("imagenes/fondo.png") center/cover;
+    url("Imagenes/fondo.png") center/cover;
 }
 
 .hero-copy {
