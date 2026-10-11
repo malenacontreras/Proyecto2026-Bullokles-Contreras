@@ -10,7 +10,7 @@
     />
     <meta
       name="keywords"
-      content="padel, torneos, torneos de padel, calendario, fixture"
+      content="pádel, torneos, torneos de pádel, calendario, fixture"
     />
     <link
       rel="icon"
@@ -44,19 +44,24 @@
           <div class="eyebrow">Calendario abierto</div>
           <h2 class="page-title">Torneos</h2>
           <p class="page-subtitle">
-            Explorá los torneos publicados y hacé click en uno para ver sus
+            Explorá los torneos publicados y hacé clic en uno para ver sus
             detalles.
           </p>
         </div>
 
         <div class="filter-bar">
           <label class="visually-hidden" for="buscador">Buscar torneo</label>
-          <input
-            class="search"
-            id="buscador"
-            placeholder="Buscar torneo..."
-            oninput="aplicarFiltros()"
-          />
+         
+<input
+  type="search"
+  class="search"
+  id="buscador"
+  placeholder="Buscar torneo..."
+  size="25"
+  maxlength="60"
+  oninput="aplicarFiltros()"
+/>
+
 
           <label class="visually-hidden" for="filtro-fecha">
             Filtrar por mes
@@ -96,8 +101,6 @@
 
           <article
             class="tournament-card"
-            data-name="Torneo Central Club"
-            data-orden="1"
             data-title="Torneo Central Club"
             data-nivel="Intermedio"
             data-fecha="15 - 16 Feb 2026"
@@ -106,11 +109,14 @@
             data-jugadores="16 jugadores"
             data-desc="Torneo de eliminación directa para parejas de nivel intermedio, a disputarse en canchas cubiertas."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/cancha_red.avif"
-              alt="Cancha de pádel con red"
+              alt="Red de una cancha de pádel"
             />
             <div class="card-body">
               <h3>Torneo Central Club</h3>
@@ -125,9 +131,7 @@
 
           <article
             class="tournament-card"
-            data-name="Torneo Palermo Padel"
-            data-orden="2"
-            data-title="Torneo Palermo Padel"
+            data-title="Torneo Palermo Pádel"
             data-nivel="Todos los niveles"
             data-fecha="22 - 24 Feb 2027"
             data-mes="2027-02"
@@ -135,14 +139,17 @@
             data-jugadores="12 jugadores"
             data-desc="Liga informal abierta a todos los niveles, pensada para juntar amigos y sumar partidos."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/paleta_partido.avif"
-              alt="Pareja festejando un punto durante un partido de pádel"
+              alt="Jugadores con paletas de pádel"
             />
             <div class="card-body">
-              <h3>Torneo Palermo Padel</h3>
+              <h3>Torneo Palermo Pádel</h3>
               <div class="meta-list">
                 <span class="meta-item">22 - 24 Feb 2027</span>
                 <span class="meta-item">Buenos Aires</span>
@@ -154,8 +161,6 @@
 
           <article
             class="tournament-card"
-            data-name="torneo nocturno nivel"
-            data-orden="3"
             data-title="Torneo Nocturno Nivel"
             data-nivel="Avanzado"
             data-fecha="1 - 2 Mar 2027"
@@ -164,11 +169,14 @@
             data-jugadores="8 jugadores"
             data-desc="Cruces nocturnos para jugadores avanzados, con partidos a mejor de tres sets."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/torneo_img_tapia_volea.jpeg"
-              alt="Jugador de padel voleando"
+              alt="Jugador de pádel realizando una volea"
             />
             <div class="card-body">
               <h3>Torneo Nocturno Nivel</h3>
@@ -183,8 +191,6 @@
 
           <article
             class="tournament-card"
-            data-name="Apertura Rosario"
-            data-orden="4"
             data-title="Apertura Rosario"
             data-nivel="Intermedio"
             data-fecha="8 - 9 Mar 2026"
@@ -193,11 +199,14 @@
             data-jugadores="12 jugadores"
             data-desc="Torneo por equipos de tres parejas, pensado para clubes que quieran competir entre sí."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/torneos_partido.jpeg"
-              alt="Jugador jugando un partido"
+              alt="Jugadores disputando un partido de pádel"
             />
             <div class="card-body">
               <h3>Apertura Rosario</h3>
@@ -212,9 +221,7 @@
 
           <article
             class="tournament-card"
-            data-name="Torneo Mardel"
-            data-orden="5"
-            data-title="Torneo Mardel"
+            data-title="Torneo BA"
             data-nivel="Todos los niveles"
             data-fecha="14 - 16 Dic 2026"
             data-mes="2026-12"
@@ -222,14 +229,17 @@
             data-jugadores="16 jugadores"
             data-desc="Torneo de verano en la costa, abierto a todos los niveles y con premios para los finalistas."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/pelota.jpeg"
-              alt="Pelota de padel"
+              alt="Pelota de pádel"
             />
             <div class="card-body">
-              <h3>Torneo Mardel</h3>
+              <h3>Torneo BA</h3>
               <div class="meta-list">
                 <span class="meta-item">14 - 16 Dic 2026</span>
                 <span class="meta-item">Buenos Aires</span>
@@ -241,8 +251,6 @@
 
           <article
             class="tournament-card"
-            data-name="Santa Fe Pádel Club"
-            data-orden="6"
             data-title="Santa Fe Pádel Club"
             data-nivel="Intermedio"
             data-fecha="21 - 23 Nov 2026"
@@ -251,11 +259,14 @@
             data-jugadores="10 jugadores"
             data-desc="Clásico torneo abierto de la ciudad, con cruces de eliminación directa a un set."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/torneos_jugador.jpeg"
-              alt="Detalle de una pelota de pádel"
+              alt="Jugador de pádel con su paleta"
             />
             <div class="card-body">
               <h3>Santa Fe Pádel Club</h3>
@@ -270,9 +281,7 @@
           
           <article
             class="tournament-card"
-            data-name="copa padel zone indoor"
-            data-orden="7"
-            data-title="copa padel zone indoor"
+            data-title="Copa Pádel Zone Indoor"
             data-nivel="Intermedio"
             data-fecha="17 - 18 Oct 2026"
             data-mes="2026-10"
@@ -280,15 +289,18 @@
             data-jugadores="16 jugadores"
             data-desc="Torneo de primavera para parejas de nivel intermedio, con cruces de eliminación directa."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
           >
             <img
               class="card-image"
               src="Imagenes/torneo_img_partido.jpg"
-              alt="Torneo imagen"
+              alt="Jugadora de pádel golpeando la pelota"
             />
 
             <div class="card-body">
-              <h3>Copa Padel Zone Indoor</h3>
+              <h3>Copa Pádel Zone Indoor</h3>
 
               <div class="meta-list">
                 <span class="meta-item">17 - 18 Oct 2026</span>
@@ -303,9 +315,7 @@
           
           <article
             class="tournament-card"
-            data-name="Torneo Pro Padel"
-            data-orden="8"
-            data-title="Torneo Pro Padel"
+            data-title="Torneo Pro Pádel"
             data-nivel="Avanzado"
             data-fecha="7 - 8 Nov 2026"
             data-mes="2026-11"
@@ -313,15 +323,19 @@
             data-jugadores="12 jugadores"
             data-desc="Torneo competitivo para parejas de nivel avanzado con eliminación directa y final."
             onclick="mostrarDetalle(this)"
+              tabindex="0"
+  role="button"
+  onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); mostrarDetalle(this); }"
+
           >
             <img
               class="card-image"
               src="Imagenes/pelota_cancha.avif"
-              alt="Pelota de pádel sobre la cancha"
+              alt="Pelota de pádel sobre una cancha"
             />
 
             <div class="card-body">
-              <h3>Torneo Pro Padel</h3>
+              <h3>Torneo Pro Pádel</h3>
 
               <div class="meta-list">
                 <span class="meta-item">7 - 8 Nov 2026</span>
@@ -347,15 +361,21 @@
       </div>
     </footer>
 
-    <div class="overlay" id="overlay">
-      <div class="modal">
+<div class="overlay" id="overlay">
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-nombre"
+  >
         <button
-          class="modal-close"
-          onclick="cerrarDetalle()"
-          aria-label="Cerrar detalle"
-        >
-          ✕
-        </button>
+  type="button"
+  class="modal-close"
+  onclick="cerrarDetalle()"
+  aria-label="Cerrar detalle"
+>
+  ✕
+</button>
         <img class="modal-img" id="modal-img" src="" alt="" />
         <div class="modal-body">
           <span class="level" id="modal-nivel"></span>

@@ -102,7 +102,7 @@ const actualizarCampo = (campo, valor) => { S[campo] = valor };
  */
 const dibujarMapa = () => {
   const p = S.p.trim(), q = encodeURIComponent(p);
-  const $mp = $('#mp'), $ml = $('#ml'); // Se almacenan las llamadas
+  const $mp = $('#mp'), $ml = $('#ml'); 
   $mp.hidden = $ml.hidden = !p;
   if (!p) return;
   $mp.src = 'https://maps.google.com/maps?q=' + q + '&output=embed';
@@ -155,7 +155,27 @@ const elegirTipo = el => { S.type = el.dataset.type; dibujarTipos() };
  * @method cargarEjemplo
  * @return {void}
  */
-const cargarEjemplo = () => { S.teams = $('#demo').dataset.duplas.split('|'); dibujarDuplas() };
+const cargarEjemplo = () => {
+  const ejemplos = $("#demo").dataset.duplas.split("|");
+
+  for (let i = 0; i < 8; i++) {
+    let dupla = ejemplos[i];
+
+    if (S.teams.includes(dupla)) {
+      let numero = S.teams.length + 1;
+      dupla = `Jugador ${numero}A / Jugador ${numero}B`;
+
+      while (S.teams.includes(dupla)) {
+        numero++;
+        dupla = `Jugador ${numero}A / Jugador ${numero}B`;
+      }
+    }
+
+    S.teams.push(dupla);
+  }
+
+  dibujarDuplas();
+};
 
 /**
  * Quita del borrador la dupla cuyo botón "×" fue clickeado.
@@ -171,14 +191,29 @@ const quitarDupla = el => { S.teams.splice(+el.parentElement.dataset.i, 1); dibu
  * @return {void}
  */
 const agregarDupla = () => {
-  const campo = $('#t'), v = campo.value.trim();
-  if (!v) alert('Escribí el nombre de la dupla antes de agregarla.');
-  else if (S.teams.includes(v)) alert(`La dupla "${v}" ya fue agregada.`);
-  else { S.teams.push(v); dibujarDuplas() }
-  campo.value = '';
+  const campo = $("#t"),
+    v = campo.value.trim();
+  const normalizar = (nombre) =>
+    nombre
+      .toLowerCase()
+      .split("/")
+      .map((j) => j.trim())
+      .sort()
+      .join("/");
+
+  if (!v) alert("Escribí el nombre de la dupla antes de agregarla.");
+  else if (v.split("/").length !== 2 || v.split("/").some((j) => !j.trim()))
+    alert("Ingresá dos jugadores separados por una barra (/).");
+  else if (S.teams.some((t) => normalizar(t) === normalizar(v)))
+    alert(`La dupla "${v}" ya fue agregada.`);
+  else {
+    S.teams.push(v);
+    dibujarDuplas();
+  }
+
+  campo.value = "";
   campo.focus();
 };
-
 
 /**
  * Mezcla un arreglo al azar (Fisher-Yates), modificándolo en el lugar.
@@ -296,7 +331,7 @@ const crearTorneo = () => {
   if (S.type === 'groups') {
     const g = n <= 7 ? 2 : Math.ceil(n / 4);
     T.groups = Array.from({length: g}, () => []);
-    ids.forEach((id, i) => { const k = i % (2 * g); T.groups[k < g ? k : 2 * g - 1 - k].push(id) }); // reparto en serpiente
+    ids.forEach((id, i) => { const k = i % (2 * g); T.groups[k < g ? k : 2 * g - 1 - k].push(id) }); 
     T.groups.forEach((gr, gi) => T.matches.push(...rr(gr, gi)));
   }
   if (S.type === 'ko') buildKO(ids);
@@ -311,7 +346,7 @@ const crearTorneo = () => {
 const startKO = () => {
   const st = T.groups.map(g => standings(g, T.matches.filter(m => g.includes(m.a))));
   const w = st.map(s => s[0].id); const r = st.map(s => s[1].id);
-  if (r.length % 2) r.push(r.shift()); // evita cruces del mismo grupo
+  if (r.length % 2) r.push(r.shift()); 
   buildKO(w.concat(r)); T.tab = 'b'; save(); render();
 };
 
@@ -569,7 +604,7 @@ const analysis = () => {
  */
 const mountApp = () => {
   const a = $('#app'), q = encodeURIComponent(T.place);
-  const $place =$('#place'), $amap =$('#amap'); // Se almacenan las llamadas
+  const $place =$('#place'), $amap =$('#amap'); 
   
   fill(a, {name: T.name, meta: `${$(`[data-type="${T.type}"] h4`).textContent} · ${T.teams.length} duplas`, desc: T.desc, place: T.place});
   $('[data-f="desc"]', a).hidden = !T.desc;
@@ -591,7 +626,7 @@ const render = () => {
   $('#fill').style.width = Math.min(100, Math.round(100 * pj / tt)) + '%';
   fill($('#app'), {prog: `${pj} de ${tt} partidos`});
   $('#fin').hidden = champion() == null;
-  if (!$('#fin').hidden && !T.fin) { T.fin = 1; T.tab = 'z'; save() } // al terminar, abre el análisis
+  if (!$('#fin').hidden && !T.fin) { T.fin = 1; T.tab = 'z'; save() } 
 
   [...$('#tabs').children].forEach(b => {
     const visible = !b.dataset.tipos || b.dataset.tipos.split(' ').includes(T.type);

@@ -1,6 +1,7 @@
 /**
- * Combina el texto del buscador con los 3 filtros (fecha, nivel y
- * ubicación) para mostrar u ocultar cada tarjeta de torneo.
+ * Filtra las tarjetas de torneos según el texto ingresado,
+ * el mes, el nivel y la ubicación seleccionados.
+ * Muestra un mensaje cuando no hay resultados.
  * @method aplicarFiltros
  * @return {void}
  */
@@ -9,6 +10,7 @@ const aplicarFiltros = () => {
     .getElementById("buscador")
     .value.toLowerCase()
     .trim();
+
   const mes = document.getElementById("filtro-fecha").value;
   const nivel = document.getElementById("filtro-nivel").value;
   const ubicacion = document.getElementById("filtro-ubicacion").value;
@@ -50,6 +52,12 @@ const aplicarFiltros = () => {
   }
 };
 
+/**
+ * Restablece los valores de todos los filtros y vuelve
+ * a mostrar las tarjetas de torneos.
+ * @method limpiarFiltros
+ * @return {void}
+ */
 const limpiarFiltros = () => {
   document.getElementById("buscador").value = "";
 
@@ -63,10 +71,11 @@ const limpiarFiltros = () => {
 };
 
 /**
- * Abre el overlay con el detalle del torneo, tomando los datos desde
- * los atributos data- de la tarjeta y la imagen que fue clickeada.
+ * Abre el modal con la información del torneo seleccionado.
+ * Obtiene los datos de los atributos data-* de la tarjeta
+ * y muestra la imagen correspondiente.
  * @method mostrarDetalle
- * @param {HTMLElement} tarjeta - Tarjeta de torneo seleccionada
+ * @param {HTMLElement} tarjeta - Tarjeta del torneo seleccionado.
  * @return {void}
  */
 const mostrarDetalle = (tarjeta) => {
@@ -87,7 +96,7 @@ const mostrarDetalle = (tarjeta) => {
 };
 
 /**
- * Cierra el overlay de detalle del torneo.
+ * Cierra el modal que muestra los detalles del torneo.
  * @method cerrarDetalle
  * @return {void}
  */

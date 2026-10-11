@@ -489,16 +489,14 @@ input:disabled {
   align-items: center;
 }
 
-.chip b {
-  cursor: pointer;
+.wrap .chip button {
   background: #fff;
+  border: 1px solid #dcebba;
   border-radius: 50%;
   width: 22px;
   height: 22px;
-  text-align: center;
-  line-height: 20px;
-  font-weight: bold;
-  border: 1px solid #dcebba;
+  padding: 0;
+  font-size: 14px;
 }
 
 .types {
@@ -617,15 +615,12 @@ iframe {
 }
 
 .hd {
-  grid-template-columns: 1fr 60px;
-  justify-items: end;
-}
-
-.hd {
   font-size: 0.75rem;
   color: var(--muted);
   text-align: center;
   font-weight: 700;
+  grid-template-columns: 1fr 60px;
+  justify-items: end;
 }
 
 .tr {
@@ -873,7 +868,7 @@ tr.q td:first-child {
   }
 
   .main-nav {
-    gap: 12px;
+    gap: 6px;
   }
 
   .main-nav a {
@@ -935,8 +930,8 @@ tr.q td:first-child {
   }
 
   .wrap {
-    padding: 18px 14px;
-  }
+  padding: 108px 14px 18px;
+}
 }
 
 @media (max-width: 800px) {
