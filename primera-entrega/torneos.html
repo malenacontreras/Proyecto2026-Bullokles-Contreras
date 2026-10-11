@@ -1,372 +1,254 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="MatchPoint" />
-    <meta
-      name="description"
-      content="Explorá los torneos de pádel publicados en MatchPoint y consultá fechas, ubicación y nivel de cada uno."
-    />
-    <meta
-      name="keywords"
-      content="pádel, torneos, torneos de pádel, calendario, fixture"
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎾</text></svg>"
-    />
-    <title>MatchPoint | Torneos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark"><img src="Imagenes/logo.png" alt="Logo de MatchPoint" /></span>
-        <h1>MatchPoint</h1>
-      </a>
-      <nav class="main-nav" aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-        <a href="torneos.html" class="active">Torneos</a>
-        <a href="organizar.html">Organizar torneo</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="page-shell">
-        <div class="page-head">
-          <div class="eyebrow">Calendario abierto</div>
-          <h2 class="page-title">Torneos</h2>
-          <p class="page-subtitle">
-            Explorá los torneos publicados y hacé clic en uno para ver sus
-            detalles.
-          </p>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="MatchPoint" />
+  <meta name="description"
+    content="Explorá los torneos de pádel publicados en MatchPoint y consultá fechas, ubicación y nivel de cada uno." />
+  <meta name="keywords" content="pádel, torneos, torneos de pádel, calendario, fixture" />
+  <link rel="icon" type="image/png" href="Imagenes/logo.png">
+  <title>MatchPoint | Torneos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-        <div class="filter-bar">
-          <label class="visually-hidden" for="buscador">Buscar torneo</label>
-         
-<input
-  type="search"
-  class="search"
-  id="buscador"
-  placeholder="Buscar torneo..."
-  size="25"
-  maxlength="60"
-  oninput="aplicarFiltros()"
-/>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="Imagenes/logo.png" alt="Logo de MatchPoint" /></span>
+      <h1>MatchPoint</h1>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="torneos.html" class="active">Torneos</a>
+      <a href="organizar.html">Organizar torneo</a>
+    </nav>
+  </header>
 
-
-          <label class="visually-hidden" for="filtro-fecha">
-            Filtrar por mes
-          </label>
-          <input type="month" id="filtro-fecha" onchange="aplicarFiltros()" />
-          <label class="visually-hidden" for="filtro-nivel"
-            >Filtrar por nivel</label
-          >
-          <select id="filtro-nivel" onchange="aplicarFiltros()">
-            <option value="Nivel" disabled selected hidden>Nivel</option>
-            <option value="Principiante">Principiante</option>
-            <option value="Intermedio">Intermedio</option>
-            <option value="Avanzado">Avanzado</option>
-          </select>
-
-          <label class="visually-hidden" for="filtro-ubicacion"
-            >Filtrar por ubicación</label
-          >
-          <select id="filtro-ubicacion" onchange="aplicarFiltros()">
-            <option>Ubicación</option>
-            <option>Córdoba</option>
-            <option>Buenos Aires</option>
-            <option>Rosario</option>
-            <option>Santa Fe</option>
-          </select>
-          <button type="button" class="btn-limpiar" onclick="limpiarFiltros()">
-            Limpiar
-          </button>
-        </div>
-
-        <div class="cards-grid" id="tournament-grid">
-
-  <div id="sin-resultados" class="sin-resultados hidden">
-    <h3>No se encontraron torneos</h3>
-    <p>Probá ajustando los filtros de búsqueda para ver más resultados.</p>
-  </div>
-
-          <article
-            class="tournament-card"
-            data-title="Torneo Central Club"
-            data-nivel="Intermedio"
-            data-fecha="15 - 16 Feb 2026"
-            data-mes="2026-02"
-            data-ubicacion="Córdoba"
-            data-jugadores="16 jugadores"
-            data-desc="Torneo de eliminación directa para parejas de nivel intermedio, a disputarse en canchas cubiertas."
-            onclick="mostrarDetalle(this)"
-          >
-            <img
-              class="card-image"
-              src="Imagenes/cancha_red.avif"
-              alt="Red de una cancha de pádel"
-            />
-            <div class="card-body">
-              <h3>Torneo Central Club</h3>
-              <div class="meta-list">
-                <span class="meta-item">15 - 16 Feb 2026</span>
-                <span class="meta-item">Córdoba</span>
-                <span class="meta-item">16 jugadores</span>
-              </div>
-              <span class="level level-blue">Intermedio</span>
-            </div>
-          </article>
-
-          <article
-            class="tournament-card"
-            data-title="Torneo Palermo Pádel"
-            data-nivel="Todos los niveles"
-            data-fecha="22 - 24 Feb 2027"
-            data-mes="2027-02"
-            data-ubicacion="Buenos Aires"
-            data-jugadores="12 jugadores"
-            data-desc="Liga informal abierta a todos los niveles, pensada para juntar amigos y sumar partidos."
-            onclick="mostrarDetalle(this)"
-          >
-            <img
-              class="card-image"
-              src="Imagenes/paleta_partido.avif"
-              alt="Jugadores con paletas de pádel"
-            />
-            <div class="card-body">
-              <h3>Torneo Palermo Pádel</h3>
-              <div class="meta-list">
-                <span class="meta-item">22 - 24 Feb 2027</span>
-                <span class="meta-item">Buenos Aires</span>
-                <span class="meta-item">12 jugadores</span>
-              </div>
-              <span class="level level-green">Todos los niveles</span>
-            </div>
-          </article>
-
-          <article
-            class="tournament-card"
-            data-title="Torneo Nocturno Nivel"
-            data-nivel="Avanzado"
-            data-fecha="1 - 2 Mar 2027"
-            data-mes="2027-03"
-            data-ubicacion="Córdoba"
-            data-jugadores="8 jugadores"
-            data-desc="Cruces nocturnos para jugadores avanzados, con partidos a mejor de tres sets."
-            onclick="mostrarDetalle(this)"
-          >
-            <img
-              class="card-image"
-              src="Imagenes/torneo_img_tapia_volea.jpeg"
-              alt="Jugador de pádel realizando una volea"
-            />
-            <div class="card-body">
-              <h3>Torneo Nocturno Nivel</h3>
-              <div class="meta-list">
-                <span class="meta-item">1 - 2 Mar 2027</span>
-                <span class="meta-item">Córdoba</span>
-                <span class="meta-item">8 jugadores</span>
-              </div>
-              <span class="level level-orange">Avanzado</span>
-            </div>
-          </article>
-
-          <article
-            class="tournament-card"
-            data-title="Apertura Rosario"
-            data-nivel="Intermedio"
-            data-fecha="8 - 9 Mar 2026"
-            data-mes="2026-03"
-            data-ubicacion="Rosario"
-            data-jugadores="12 jugadores"
-            data-desc="Torneo por equipos de tres parejas, pensado para clubes que quieran competir entre sí."
-            onclick="mostrarDetalle(this)"
-
-          >
-            <img
-              class="card-image"
-              src="Imagenes/torneos_partido.jpeg"
-              alt="Jugadores disputando un partido de pádel"
-            />
-            <div class="card-body">
-              <h3>Apertura Rosario</h3>
-              <div class="meta-list">
-                <span class="meta-item">8 - 9 Mar 2026</span>
-                <span class="meta-item">Rosario</span>
-                <span class="meta-item">12 jugadores</span>
-              </div>
-              <span class="level level-blue">Intermedio</span>
-            </div>
-          </article>
-
-          <article
-            class="tournament-card"
-            data-title="Torneo BA"
-            data-nivel="Todos los niveles"
-            data-fecha="14 - 16 Dic 2026"
-            data-mes="2026-12"
-            data-ubicacion="Buenos Aires"
-            data-jugadores="16 jugadores"
-            data-desc="Torneo de verano en la costa, abierto a todos los niveles y con premios para los finalistas."
-            onclick="mostrarDetalle(this)"
-          >
-            <img
-              class="card-image"
-              src="Imagenes/pelota.jpeg"
-              alt="Pelota de pádel"
-            />
-            <div class="card-body">
-              <h3>Torneo BA</h3>
-              <div class="meta-list">
-                <span class="meta-item">14 - 16 Dic 2026</span>
-                <span class="meta-item">Buenos Aires</span>
-                <span class="meta-item">16 jugadores</span>
-              </div>
-              <span class="level level-green">Todos los niveles</span>
-            </div>
-          </article>
-
-          <article
-            class="tournament-card"
-            data-title="Santa Fe Pádel Club"
-            data-nivel="Intermedio"
-            data-fecha="21 - 23 Nov 2026"
-            data-mes="2026-11"
-            data-ubicacion="Santa Fe"
-            data-jugadores="10 jugadores"
-            data-desc="Clásico torneo abierto de la ciudad, con cruces de eliminación directa a un set."
-            onclick="mostrarDetalle(this)"
-          >
-            <img
-              class="card-image"
-              src="Imagenes/torneos_jugador.jpeg"
-              alt="Jugador de pádel con su paleta"
-            />
-            <div class="card-body">
-              <h3>Santa Fe Pádel Club</h3>
-              <div class="meta-list">
-                <span class="meta-item">21 - 23 Nov 2026</span>
-                <span class="meta-item">Santa Fe</span>
-                <span class="meta-item">10 jugadores</span>
-              </div>
-              <span class="level level-blue">Intermedio</span>
-            </div>
-          </article>
-          
-          <article
-            class="tournament-card"
-            data-title="Copa Pádel Zone Indoor"
-            data-nivel="Intermedio"
-            data-fecha="17 - 18 Oct 2026"
-            data-mes="2026-10"
-            data-ubicacion="Córdoba"
-            data-jugadores="16 jugadores"
-            data-desc="Torneo de primavera para parejas de nivel intermedio, con cruces de eliminación directa."
-            onclick="mostrarDetalle(this)"
-          >
-            <img
-              class="card-image"
-              src="Imagenes/torneo_img_partido.jpg"
-              alt="Jugadora de pádel golpeando la pelota"
-            />
-
-            <div class="card-body">
-              <h3>Copa Pádel Zone Indoor</h3>
-
-              <div class="meta-list">
-                <span class="meta-item">17 - 18 Oct 2026</span>
-                <span class="meta-item">Córdoba</span>
-                <span class="meta-item">16 jugadores</span>
-              </div>
-
-              <span class="level level-blue">Intermedio</span>
-            </div>
-          </article>
-
-          
-          <article
-            class="tournament-card"
-            data-title="Torneo Pro Pádel"
-            data-nivel="Avanzado"
-            data-fecha="7 - 8 Nov 2026"
-            data-mes="2026-11"
-            data-ubicacion="Buenos Aires"
-            data-jugadores="12 jugadores"
-            data-desc="Torneo competitivo para parejas de nivel avanzado con eliminación directa y final."
-            onclick="mostrarDetalle(this)"
-
-          >
-            <img
-              class="card-image"
-              src="Imagenes/pelota_cancha.avif"
-              alt="Pelota de pádel sobre una cancha"
-            />
-
-            <div class="card-body">
-              <h3>Torneo Pro Pádel</h3>
-
-              <div class="meta-list">
-                <span class="meta-item">7 - 8 Nov 2026</span>
-                <span class="meta-item">Buenos Aires</span>
-                <span class="meta-item">12 jugadores</span>
-              </div>
-
-              <span class="level level-orange">Avanzado</span>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-links">
-          <a href="index.html">Inicio</a>
-          <a href="torneos.html">Torneos</a>
-          <a href="organizar.html">Organizar torneo</a>
-        </div>
-        <span>© 2026 MatchPoint</span>
+  <main>
+    <section class="page-shell">
+      <div class="page-head">
+        <div class="eyebrow">Calendario abierto</div>
+        <h2 class="page-title">Torneos</h2>
+        <p class="page-subtitle">
+          Explorá los torneos publicados y hacé clic en uno para ver sus
+          detalles.
+        </p>
       </div>
-    </footer>
 
-<div class="overlay" id="overlay">
-  <div
-    class="modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modal-nombre"
-  >
-        <button
-  type="button"
-  class="modal-close"
-  onclick="cerrarDetalle()"
-  aria-label="Cerrar detalle"
->
-  ✕
-</button>
-        <img class="modal-img" id="modal-img" src="" alt="" />
-        <div class="modal-body">
-          <span class="level" id="modal-nivel"></span>
-          <h2 id="modal-nombre"></h2>
-          <p id="modal-desc"></p>
-          <div class="meta-list">
-            <span class="meta-item">📅 <span id="modal-fecha"></span></span>
-            <span class="meta-item">📍 <span id="modal-ubicacion"></span></span>
-            <span class="meta-item">👥 <span id="modal-jugadores"></span></span>
+      <div class="filter-bar">
+        <label class="visually-hidden" for="buscador">Buscar torneo</label>
+
+        <input type="search" class="search" id="buscador" placeholder="Buscar torneo..." size="25" maxlength="60"
+          oninput="aplicarFiltros()" />
+
+
+        <label class="visually-hidden" for="filtro-fecha">
+          Filtrar por mes
+        </label>
+        <input type="month" id="filtro-fecha" onchange="aplicarFiltros()" />
+        <label class="visually-hidden" for="filtro-nivel">Filtrar por nivel</label>
+        <select id="filtro-nivel" onchange="aplicarFiltros()">
+          <option value="Nivel" disabled selected hidden>Nivel</option>
+          <option value="Principiante">Principiante</option>
+          <option value="Intermedio">Intermedio</option>
+          <option value="Avanzado">Avanzado</option>
+        </select>
+
+        <label class="visually-hidden" for="filtro-ubicacion">Filtrar por ubicación</label>
+        <select id="filtro-ubicacion" onchange="aplicarFiltros()">
+          <option>Ubicación</option>
+          <option>Córdoba</option>
+          <option>Buenos Aires</option>
+          <option>Rosario</option>
+          <option>Santa Fe</option>
+        </select>
+        <button type="button" class="btn-limpiar" onclick="limpiarFiltros()">
+          Limpiar
+        </button>
+      </div>
+
+      <div class="cards-grid" id="tournament-grid">
+
+        <div id="sin-resultados" class="sin-resultados hidden">
+          <h3>No se encontraron torneos</h3>
+          <p>Probá ajustando los filtros de búsqueda para ver más resultados.</p>
+        </div>
+
+        <article class="tournament-card" data-title="Torneo Central Club" data-nivel="Intermedio"
+          data-fecha="15 - 16 Feb 2026" data-mes="2026-02" data-ubicacion="Córdoba" data-jugadores="16 jugadores"
+          data-desc="Torneo de eliminación directa para parejas de nivel intermedio, a disputarse en canchas cubiertas."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/cancha_red.avif" alt="Red de una cancha de pádel" />
+          <div class="card-body">
+            <h3>Torneo Central Club</h3>
+            <div class="meta-list">
+              <span class="meta-item">15 - 16 Feb 2026</span>
+              <span class="meta-item">Córdoba</span>
+              <span class="meta-item">16 jugadores</span>
+            </div>
+            <span class="level level-blue">Intermedio</span>
           </div>
+        </article>
+
+        <article class="tournament-card" data-title="Torneo Palermo Pádel" data-nivel="Todos los niveles"
+          data-fecha="22 - 24 Feb 2027" data-mes="2027-02" data-ubicacion="Buenos Aires" data-jugadores="12 jugadores"
+          data-desc="Liga informal abierta a todos los niveles, pensada para juntar amigos y sumar partidos."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/paleta_partido.avif" alt="Jugadores con paletas de pádel" />
+          <div class="card-body">
+            <h3>Torneo Palermo Pádel</h3>
+            <div class="meta-list">
+              <span class="meta-item">22 - 24 Feb 2027</span>
+              <span class="meta-item">Buenos Aires</span>
+              <span class="meta-item">12 jugadores</span>
+            </div>
+            <span class="level level-green">Todos los niveles</span>
+          </div>
+        </article>
+
+        <article class="tournament-card" data-title="Torneo Nocturno Nivel" data-nivel="Avanzado"
+          data-fecha="1 - 2 Mar 2027" data-mes="2027-03" data-ubicacion="Córdoba" data-jugadores="8 jugadores"
+          data-desc="Cruces nocturnos para jugadores avanzados, con partidos a mejor de tres sets."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/torneo_img_tapia_volea.jpeg"
+            alt="Jugador de pádel realizando una volea" />
+          <div class="card-body">
+            <h3>Torneo Nocturno Nivel</h3>
+            <div class="meta-list">
+              <span class="meta-item">1 - 2 Mar 2027</span>
+              <span class="meta-item">Córdoba</span>
+              <span class="meta-item">8 jugadores</span>
+            </div>
+            <span class="level level-orange">Avanzado</span>
+          </div>
+        </article>
+
+        <article class="tournament-card" data-title="Apertura Rosario" data-nivel="Intermedio"
+          data-fecha="8 - 9 Mar 2026" data-mes="2026-03" data-ubicacion="Rosario" data-jugadores="12 jugadores"
+          data-desc="Torneo por equipos de tres parejas, pensado para clubes que quieran competir entre sí."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/torneos_partido.jpeg" alt="Jugadores disputando un partido de pádel" />
+          <div class="card-body">
+            <h3>Apertura Rosario</h3>
+            <div class="meta-list">
+              <span class="meta-item">8 - 9 Mar 2026</span>
+              <span class="meta-item">Rosario</span>
+              <span class="meta-item">12 jugadores</span>
+            </div>
+            <span class="level level-blue">Intermedio</span>
+          </div>
+        </article>
+
+        <article class="tournament-card" data-title="Torneo BA" data-nivel="Todos los niveles"
+          data-fecha="14 - 16 Dic 2026" data-mes="2026-12" data-ubicacion="Buenos Aires" data-jugadores="16 jugadores"
+          data-desc="Torneo de verano en la costa, abierto a todos los niveles y con premios para los finalistas."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/pelota.jpeg" alt="Pelota de pádel" />
+          <div class="card-body">
+            <h3>Torneo BA</h3>
+            <div class="meta-list">
+              <span class="meta-item">14 - 16 Dic 2026</span>
+              <span class="meta-item">Buenos Aires</span>
+              <span class="meta-item">16 jugadores</span>
+            </div>
+            <span class="level level-green">Todos los niveles</span>
+          </div>
+        </article>
+
+        <article class="tournament-card" data-title="Santa Fe Pádel Club" data-nivel="Intermedio"
+          data-fecha="21 - 23 Nov 2026" data-mes="2026-11" data-ubicacion="Santa Fe" data-jugadores="10 jugadores"
+          data-desc="Clásico torneo abierto de la ciudad, con cruces de eliminación directa a un set."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/torneos_jugador.jpeg" alt="Jugador de pádel con su paleta" />
+          <div class="card-body">
+            <h3>Santa Fe Pádel Club</h3>
+            <div class="meta-list">
+              <span class="meta-item">21 - 23 Nov 2026</span>
+              <span class="meta-item">Santa Fe</span>
+              <span class="meta-item">10 jugadores</span>
+            </div>
+            <span class="level level-blue">Intermedio</span>
+          </div>
+        </article>
+
+        <article class="tournament-card" data-title="Copa Pádel Zone Indoor" data-nivel="Intermedio"
+          data-fecha="17 - 18 Oct 2026" data-mes="2026-10" data-ubicacion="Córdoba" data-jugadores="16 jugadores"
+          data-desc="Torneo de primavera para parejas de nivel intermedio, con cruces de eliminación directa."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/torneo_img_partido.jpg" alt="Jugadora de pádel golpeando la pelota" />
+
+          <div class="card-body">
+            <h3>Copa Pádel Zone Indoor</h3>
+
+            <div class="meta-list">
+              <span class="meta-item">17 - 18 Oct 2026</span>
+              <span class="meta-item">Córdoba</span>
+              <span class="meta-item">16 jugadores</span>
+            </div>
+
+            <span class="level level-blue">Intermedio</span>
+          </div>
+        </article>
+
+
+        <article class="tournament-card" data-title="Torneo Pro Pádel" data-nivel="Avanzado" data-fecha="7 - 8 Nov 2026"
+          data-mes="2026-11" data-ubicacion="Buenos Aires" data-jugadores="12 jugadores"
+          data-desc="Torneo competitivo para parejas de nivel avanzado con eliminación directa y final."
+          onclick="mostrarDetalle(this)">
+          <img class="card-image" src="Imagenes/pelota_cancha.avif" alt="Pelota de pádel sobre una cancha" />
+
+          <div class="card-body">
+            <h3>Torneo Pro Pádel</h3>
+
+            <div class="meta-list">
+              <span class="meta-item">7 - 8 Nov 2026</span>
+              <span class="meta-item">Buenos Aires</span>
+              <span class="meta-item">12 jugadores</span>
+            </div>
+
+            <span class="level level-orange">Avanzado</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="torneos.html">Torneos</a>
+        <a href="organizar.html">Organizar torneo</a>
+      </div>
+      <span>© 2026 MatchPoint</span>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-nombre">
+      <button type="button" class="modal-close" onclick="cerrarDetalle()" aria-label="Cerrar detalle">
+        ✕
+      </button>
+      <img class="modal-img" id="modal-img" src="" alt="" />
+      <div class="modal-body">
+        <span class="level" id="modal-nivel"></span>
+        <h2 id="modal-nombre"></h2>
+        <p id="modal-desc"></p>
+        <div class="meta-list">
+          <span class="meta-item">📅 <span id="modal-fecha"></span></span>
+          <span class="meta-item">📍 <span id="modal-ubicacion"></span></span>
+          <span class="meta-item">👥 <span id="modal-jugadores"></span></span>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="torneos.js"></script>
-  </body>
+  <script src="torneos.js"></script>
+</body>
+
 </html>
