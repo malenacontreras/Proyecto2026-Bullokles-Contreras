@@ -102,9 +102,10 @@ const actualizarCampo = (campo, valor) => { S[campo] = valor };
  */
 const dibujarMapa = () => {
   const p = S.p.trim(), q = encodeURIComponent(p);
-  $('#mp').hidden = $('#ml').hidden = !p;
+  const $mp = $('#mp'), $ml = $('#ml'); // Se almacenan las llamadas
+  $mp.hidden = $ml.hidden = !p;
   if (!p) return;
-  $('#mp').src = 'https://maps.google.com/maps?q=' + q + '&output=embed';
+  $mp.src = 'https://maps.google.com/maps?q=' + q + '&output=embed';
   $('#mlink').href = 'https://www.google.com/maps/search/?api=1&query=' + q;
 };
 
@@ -568,11 +569,13 @@ const analysis = () => {
  */
 const mountApp = () => {
   const a = $('#app'), q = encodeURIComponent(T.place);
+  const $place =$('#place'), $amap =$('#amap'); // Se almacenan las llamadas
+  
   fill(a, {name: T.name, meta: `${$(`[data-type="${T.type}"] h4`).textContent} · ${T.teams.length} duplas`, desc: T.desc, place: T.place});
   $('[data-f="desc"]', a).hidden = !T.desc;
-  $('#place').hidden = $('#amap').hidden = !T.place;
+  $place.hidden =$amap.hidden = !T.place;
   $('#plink').href = 'https://www.google.com/maps/search/?api=1&query=' + q;
-  $('#amap').src = T.place ? 'https://maps.google.com/maps?q=' + q + '&output=embed' : '';
+  $amap.src = T.place ? 'https://maps.google.com/maps?q=' + q + '&output=embed' : '';
 };
 
 /**
