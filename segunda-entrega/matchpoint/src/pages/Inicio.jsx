@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Button from "@/components/Button";
 
 const Inicio = () => {
   const navigate = useNavigate();
@@ -20,21 +21,19 @@ const Inicio = () => {
           </p>
 
           <div className="actions">
-            <button
-              type="button"
+            <Button
               className="button primary"
               onClick={() => navigate("/organizar")}
             >
               Organizar torneo
-            </button>
+            </Button>
 
-            <button
-              type="button"
+            <Button
               className="button outline"
               onClick={() => navigate("/torneos")}
             >
               Ver torneos
-            </button>
+            </Button>
           </div>
         </div>
       </section>

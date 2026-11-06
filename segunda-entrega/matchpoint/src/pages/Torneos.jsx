@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TorneoCard from "@/components/TorneoCard";
 import { getTorneos } from "@/api/torneos";
 import { obtenerClaseNivel } from "@/utils/niveles";
+import Button from "@/components/Button";
 
 const Torneos = () => {
   const [torneos, setTorneos] = useState([]);
@@ -129,9 +130,9 @@ useEffect(() => {
           <option value="Santa Fe">Santa Fe</option>
         </select>
 
-        <button type="button" className="btn-limpiar" onClick={limpiarFiltros}>
+        <Button className="btn-limpiar" onClick={limpiarFiltros}>
           Limpiar
-        </button>
+        </Button>
       </div>
 
       <div className="cards-grid" id="tournament-grid">
@@ -166,14 +167,13 @@ useEffect(() => {
             aria-label={`Detalles de ${torneoSeleccionado.nombre}`}
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              type="button"
+            <Button
               className="modal-close"
               onClick={() => setTorneoSeleccionado(null)}
-              aria-label="Cerrar detalles"
+              ariaLabel="Cerrar detalles"
             >
               ✕
-            </button>
+            </Button>
 
             <img
               className="modal-img"
