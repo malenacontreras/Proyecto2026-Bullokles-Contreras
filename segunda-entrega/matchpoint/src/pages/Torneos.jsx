@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import TorneoCard from "@/components/TorneoCard";
+import { getTorneos } from "@/api/torneos";
 
 const Torneos = () => {
   const [torneos, setTorneos] = useState([]);
@@ -22,25 +23,18 @@ const [ubicacion, setUbicacion] = useState(
 
   const [torneoSeleccionado, setTorneoSeleccionado] = useState(null);
 
-useEffect(() => {
-  const obtenerTorneos = async () => {
-    try {
-      const respuesta = await fetch("http://localhost:3000/torneos");
-
-      if (!respuesta.ok) {
-        throw new Error("No se pudieron obtener los torneos");
+  useEffect(() => {
+    const cargarTorneos = async () => {
+      try {
+        const datos = await getTorneos();
+        setTorneos(datos);
+      } catch (error) {
+        console.error("Error al cargar los torneos:", error);
       }
+    };
 
-      const datos = await respuesta.json();
-      setTorneos(datos);
-    } catch (error) {
-      console.error("Error al cargar los torneos:", error);
-    }
-  };
-
-  obtenerTorneos();
-}, []);
-
+    cargarTorneos();
+  }, []);
 
 useEffect(() => {
   localStorage.setItem("matchpoint-busqueda", busqueda);
