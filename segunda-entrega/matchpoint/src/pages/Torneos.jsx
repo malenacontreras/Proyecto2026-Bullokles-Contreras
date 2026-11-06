@@ -1,5 +1,171 @@
+import { useState } from "react";
+import { torneos } from "../data/torneos";
+import TorneoCard from "../components/TorneoCard";
+
 const Torneos = () => {
-  return <h1>Torneos de pádel</h1>;
+  const [busqueda, setBusqueda] = useState("");
+  const [mes, setMes] = useState("");
+  const [nivel, setNivel] = useState("");
+  const [ubicacion, setUbicacion] = useState("");
+  const [torneoSeleccionado, setTorneoSeleccionado] = useState(null);
+
+  const torneosFiltrados = torneos.filter((torneo) => {
+    const coincideBusqueda = torneo.nombre
+      .toLowerCase()
+      .includes(busqueda.toLowerCase());
+
+    const coincideMes = !mes || torneo.mes === mes;
+    const coincideNivel = !nivel || torneo.nivel === nivel;
+    const coincideUbicacion = !ubicacion || torneo.ubicacion === ubicacion;
+
+    return (
+      coincideBusqueda && coincideMes && coincideNivel && coincideUbicacion
+    );
+  });
+
+  const limpiarFiltros = () => {
+    setBusqueda("");
+    setMes("");
+    setNivel("");
+    setUbicacion("");
+  };
+
+  return (
+    <section className="page-shell">
+      <div className="page-head">
+        <div className="eyebrow">Calendario abierto</div>
+        <h2 className="page-title">Torneos</h2>
+        <p className="page-subtitle">
+          Explorá los torneos publicados y hacé click en uno para ver sus
+          detalles.
+        </p>
+      </div>
+
+      <div className="filter-bar">
+        <label className="visually-hidden" htmlFor="buscador">
+          Buscar torneo
+        </label>
+        <input
+          className="search"
+          id="buscador"
+          placeholder="Buscar torneo..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+        />
+
+        <label className="visually-hidden" htmlFor="filtro-fecha">
+          Filtrar por mes
+        </label>
+        <input
+          type="month"
+          id="filtro-fecha"
+          value={mes}
+          onChange={(e) => setMes(e.target.value)}
+        />
+
+        <label className="visually-hidden" htmlFor="filtro-nivel">
+          Filtrar por nivel
+        </label>
+        <select
+          id="filtro-nivel"
+          value={nivel}
+          onChange={(e) => setNivel(e.target.value)}
+        >
+          <option value="">Nivel</option>
+          <option value="Principiante">Principiante</option>
+          <option value="Intermedio">Intermedio</option>
+          <option value="Avanzado">Avanzado</option>
+          <option value="Todos los niveles">Todos los niveles</option>
+        </select>
+
+        <label className="visually-hidden" htmlFor="filtro-ubicacion">
+          Filtrar por ubicación
+        </label>
+        <select
+          id="filtro-ubicacion"
+          value={ubicacion}
+          onChange={(e) => setUbicacion(e.target.value)}
+        >
+          <option value="">Ubicación</option>
+          <option value="Córdoba">Córdoba</option>
+          <option value="Buenos Aires">Buenos Aires</option>
+          <option value="Rosario">Rosario</option>
+          <option value="Santa Fe">Santa Fe</option>
+        </select>
+
+        <button type="button" className="btn-limpiar" onClick={limpiarFiltros}>
+          Limpiar
+        </button>
+      </div>
+
+      <div className="cards-grid" id="tournament-grid">
+        {torneosFiltrados.length === 0 ? (
+          <div className="sin-resultados">
+            <h3>No se encontraron torneos</h3>
+            <p>
+              Probá ajustando los filtros de búsqueda para ver más resultados.
+            </p>
+          </div>
+        ) : (
+          torneosFiltrados.map((torneo) => (
+            <TorneoCard
+              key={torneo.id}
+              torneo={torneo}
+              onSeleccionar={setTorneoSeleccionado}
+            />
+          ))
+        )}
+      </div>
+
+      {torneoSeleccionado && (
+        <div
+          id="overlay"
+          className="show"
+          onClick={() => setTorneoSeleccionado(null)}
+        >
+          <div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Detalles de ${torneoSeleccionado.nombre}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="modal-close"
+              onClick={() => setTorneoSeleccionado(null)}
+              aria-label="Cerrar detalles"
+            >
+              ✕
+            </button>
+
+            <img
+              className="modal-img"
+              src={torneoSeleccionado.imagen}
+              alt={torneoSeleccionado.alt}
+            />
+
+            <div className="modal-body">
+              <h2>{torneoSeleccionado.nombre}</h2>
+              <p>{torneoSeleccionado.descripcion}</p>
+              <p>
+                <strong>Fecha:</strong> {torneoSeleccionado.fecha}
+              </p>
+              <p>
+                <strong>Ubicación:</strong> {torneoSeleccionado.ubicacion}
+              </p>
+              <p>
+                <strong>Jugadores:</strong> {torneoSeleccionado.jugadores}
+              </p>
+              <p>
+                <strong>Nivel:</strong> {torneoSeleccionado.nivel}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
 };
 
 export default Torneos;
