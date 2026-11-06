@@ -1,3 +1,4 @@
+import { obtenerClaseNivel } from "@/utils/niveles";
 const TorneoCard = ({ torneo, onSeleccionar }) => {
   return (
     <article className="tournament-card" onClick={() => onSeleccionar(torneo)}>
@@ -12,15 +13,7 @@ const TorneoCard = ({ torneo, onSeleccionar }) => {
           <span className="meta-item">{torneo.jugadores}</span>
         </div>
 
-        <span
-          className={`level ${
-            torneo.nivel === "Avanzado"
-              ? "level-orange"
-              : torneo.nivel === "Intermedio"
-                ? "level-blue"
-                : "level-green"
-          }`}
-        >
+        <span className={`level ${obtenerClaseNivel(torneo.nivel)}`}>
           {torneo.nivel}
         </span>
       </div>

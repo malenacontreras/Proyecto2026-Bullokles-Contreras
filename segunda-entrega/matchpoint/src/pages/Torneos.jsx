@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import TorneoCard from "@/components/TorneoCard";
 import { getTorneos } from "@/api/torneos";
+import { obtenerClaseNivel } from "@/utils/niveles";
 
 const Torneos = () => {
   const [torneos, setTorneos] = useState([]);
@@ -182,13 +183,7 @@ useEffect(() => {
 
             <div className="modal-body">
               <span
-                className={`level ${
-                  torneoSeleccionado.nivel === "Avanzado"
-                    ? "level-orange"
-                    : torneoSeleccionado.nivel === "Intermedio"
-                      ? "level-blue"
-                      : "level-green"
-                }`}
+                className={`level ${obtenerClaseNivel(torneoSeleccionado.nivel)}`}
               >
                 {torneoSeleccionado.nivel}
               </span>
