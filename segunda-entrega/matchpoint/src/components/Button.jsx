@@ -5,15 +5,17 @@
  * @param {Function} props.onClick - Función que se ejecuta al hacer click
  * @param {string} [props.className] - Clases CSS del botón
  * @param {string} [props.ariaLabel] - Texto accesible para botones que solo muestran un ícono
+ * @param {boolean} [props.disabled] - Indica si el botón está deshabilitado
  * @returns {JSX.Element} Botón
  */
-const Button = ({ children, onClick, className, ariaLabel }) => {
+const Button = ({ children, onClick, className, ariaLabel, disabled }) => {
   return (
     <button
       type="button"
       className={className}
       onClick={onClick}
       aria-label={ariaLabel}
+      disabled={disabled}
     >
       {children}
     </button>
