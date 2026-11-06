@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   return (
     <header className="site-header">
       <NavLink className="brand" to="/">
         <span className="brand-mark">
-          <img src="/Imagenes/logo.png" alt="Logo de MatchPoint" />
+          <img src={logo} alt="Logo de MatchPoint" />
         </span>
         <h1>MatchPoint</h1>
       </NavLink>
