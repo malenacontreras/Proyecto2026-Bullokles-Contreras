@@ -1,7 +1,7 @@
-
 @use "./header";
 @use "./inicio";
 @use "./torneos";
+@use "./footer";
 
 :root {
   --mist: #f4f6f2;
@@ -42,4 +42,21 @@ a {
 
 main {
   margin-top: 84px;
+}
+
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  color: var(--lime);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
 }

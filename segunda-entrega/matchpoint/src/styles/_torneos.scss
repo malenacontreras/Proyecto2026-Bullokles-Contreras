@@ -228,11 +228,12 @@
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+
 .modal-body {
   padding: 24px;
 
   h2 {
-    margin: 10px 0;
+    margin: 14px 0;
     font-size: 24px;
   }
 
@@ -241,7 +242,23 @@
     line-height: 1.6;
     margin: 0 0 16px;
   }
+
+  .meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 17px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 }
+
 
 @media (max-width: 900px) {
   .cards-grid {
@@ -256,6 +273,7 @@
 
   .filter-bar {
     display: grid;
+    align-items: stretch;
 
     select {
       border-left: 0;

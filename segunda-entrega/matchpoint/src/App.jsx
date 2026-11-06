@@ -1,20 +1,22 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import Header from "./components/Header";
-import Inicio from "./pages/Inicio";
-import Torneos from "./pages/Torneos";
-import Organizar from "./pages/Organizar";
+import Header from "@/components/Header";
+import Inicio from "@/pages/Inicio";
+import Torneos from "@/pages/Torneos";
+import Organizar from "@/pages/Organizar";
+import Footer from "@/components/Footer";
 
-const Layout = () => {
+function Layout() {
   return (
     <>
       <Header />
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
-};
+}
 
 const App = () => {
   return (

@@ -49,7 +49,7 @@ export const torneos = [
     descripcion:
       "Torneo por equipos de tres parejas, pensado para clubes que quieran competir entre sí.",
     imagen: "/Imagenes/torneos_partido.jpeg",
-    alt: "Jugador jugando un partido",
+    alt: "Jugador disputando un partido de pádel",
   },
   {
     id: 5,
@@ -75,7 +75,7 @@ export const torneos = [
     descripcion:
       "Clásico torneo abierto de la ciudad, con cruces de eliminación directa a un set.",
     imagen: "/Imagenes/torneos_jugador.jpeg",
-    alt: "Detalle de una pelota de pádel",
+    alt: "Jugador de pádel con una paleta y un bolso junto a una cancha",
   },
   {
     id: 7,
@@ -88,7 +88,7 @@ export const torneos = [
     descripcion:
       "Torneo de primavera para parejas de nivel intermedio, con cruces de eliminación directa.",
     imagen: "/Imagenes/torneo_img_partido.jpg",
-    alt: "Torneo imagen",
+    alt: "Partido de pádel durante un torneo",
   },
   {
     id: 8,

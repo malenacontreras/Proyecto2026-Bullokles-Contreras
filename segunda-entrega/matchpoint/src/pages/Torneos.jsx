@@ -1,18 +1,59 @@
-import { useState } from "react";
-import { torneos } from "../data/torneos";
-import TorneoCard from "../components/TorneoCard";
+import { useState, useEffect } from "react";
+import TorneoCard from "@/components/TorneoCard";
 
 const Torneos = () => {
-  const [busqueda, setBusqueda] = useState("");
-  const [mes, setMes] = useState("");
-  const [nivel, setNivel] = useState("");
-  const [ubicacion, setUbicacion] = useState("");
+  const [torneos, setTorneos] = useState([]);
+
+const [busqueda, setBusqueda] = useState(
+  () => localStorage.getItem("matchpoint-busqueda") || "",
+);
+
+const [mes, setMes] = useState(
+  () => localStorage.getItem("matchpoint-mes") || "",
+);
+
+const [nivel, setNivel] = useState(
+  () => localStorage.getItem("matchpoint-nivel") || "",
+);
+
+const [ubicacion, setUbicacion] = useState(
+  () => localStorage.getItem("matchpoint-ubicacion") || "",
+);
+
   const [torneoSeleccionado, setTorneoSeleccionado] = useState(null);
 
+useEffect(() => {
+  const obtenerTorneos = async () => {
+    try {
+      const respuesta = await fetch("http://localhost:3000/torneos");
+
+      if (!respuesta.ok) {
+        throw new Error("No se pudieron obtener los torneos");
+      }
+
+      const datos = await respuesta.json();
+      setTorneos(datos);
+    } catch (error) {
+      console.error("Error al cargar los torneos:", error);
+    }
+  };
+
+  obtenerTorneos();
+}, []);
+
+
+useEffect(() => {
+  localStorage.setItem("matchpoint-busqueda", busqueda);
+  localStorage.setItem("matchpoint-mes", mes);
+  localStorage.setItem("matchpoint-nivel", nivel);
+  localStorage.setItem("matchpoint-ubicacion", ubicacion);
+}, [busqueda, mes, nivel, ubicacion]);
+
+
   const torneosFiltrados = torneos.filter((torneo) => {
-    const coincideBusqueda = torneo.nombre
-      .toLowerCase()
-      .includes(busqueda.toLowerCase());
+      const coincideBusqueda = torneo.nombre
+        .toLowerCase()
+        .includes(busqueda.trim().toLowerCase());
 
     const coincideMes = !mes || torneo.mes === mes;
     const coincideNivel = !nivel || torneo.nivel === nivel;
@@ -146,20 +187,33 @@ const Torneos = () => {
             />
 
             <div className="modal-body">
+              <span
+                className={`level ${
+                  torneoSeleccionado.nivel === "Avanzado"
+                    ? "level-orange"
+                    : torneoSeleccionado.nivel === "Intermedio"
+                      ? "level-blue"
+                      : "level-green"
+                }`}
+              >
+                {torneoSeleccionado.nivel}
+              </span>
+
               <h2>{torneoSeleccionado.nombre}</h2>
+
               <p>{torneoSeleccionado.descripcion}</p>
-              <p>
-                <strong>Fecha:</strong> {torneoSeleccionado.fecha}
-              </p>
-              <p>
-                <strong>Ubicación:</strong> {torneoSeleccionado.ubicacion}
-              </p>
-              <p>
-                <strong>Jugadores:</strong> {torneoSeleccionado.jugadores}
-              </p>
-              <p>
-                <strong>Nivel:</strong> {torneoSeleccionado.nivel}
-              </p>
+
+              <div className="meta-list">
+                <span className="meta-item">📅 {torneoSeleccionado.fecha}</span>
+
+                <span className="meta-item">
+                  📍 {torneoSeleccionado.ubicacion}
+                </span>
+
+                <span className="meta-item">
+                  👥 {torneoSeleccionado.jugadores}
+                </span>
+              </div>
             </div>
           </div>
         </div>

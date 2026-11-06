@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Inicio = () => {
+  const navigate = useNavigate();
   return (
     <>
       {/* Sección principal */}
@@ -19,13 +20,21 @@ const Inicio = () => {
           </p>
 
           <div className="actions">
-            <Link className="button primary" to="/organizar">
+            <button
+              type="button"
+              className="button primary"
+              onClick={() => navigate("/organizar")}
+            >
               Organizar torneo
-            </Link>
+            </button>
 
-            <Link className="button outline" to="/torneos">
+            <button
+              type="button"
+              className="button outline"
+              onClick={() => navigate("/torneos")}
+            >
               Ver torneos
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -70,8 +79,11 @@ const Inicio = () => {
       {/* Sobre MatchPoint */}
       <section className="section">
         <div className="about">
-          <div className="about-visual" aria-hidden="true">
-            <img src="/Imagenes/paleta_pelotas.avif" alt="" />
+          <div className="about-visual">
+            <img
+              src="/Imagenes/paleta_pelotas.avif"
+              alt="Paleta de pádel junto a pelotas sobre una cancha"
+            />
           </div>
 
           <div>
