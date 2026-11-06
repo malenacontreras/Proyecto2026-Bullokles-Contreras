@@ -94,4 +94,4 @@ Materia: **Taller de Desarrollo Web**
 
 El proyecto se encuentra publicado mediante **GitHub Pages**.
 
-🔗 [Ver MatchPoint online](PEGAR-ACA-LINK-DE-GITHUB-PAGES)
+🔗 [Ver MatchPoint online](https://malenacontreras.github.io/Proyecto2026-Bullokles-Contreras/primera-entrega/ )
