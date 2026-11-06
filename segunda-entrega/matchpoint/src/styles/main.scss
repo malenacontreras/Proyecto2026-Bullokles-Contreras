@@ -1,0 +1,44 @@
+
+@use "./header";
+@use "./inicio";
+
+:root {
+  --mist: #f4f6f2;
+  --paper: #ffffff;
+  --ink: #0c1b16;
+  --muted: #68736e;
+  --lime: #c8f560;
+  --focus: #2e4400;
+  --line: #e1e6e1;
+  --bad: #e63946;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.5 Inter, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+main {
+  margin-top: 84px;
+}

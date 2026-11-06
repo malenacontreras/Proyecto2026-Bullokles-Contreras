@@ -1,0 +1,84 @@
+
+.site-header {
+  height: 84px;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6.5%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+  color: #fff;
+  text-decoration: none;
+
+  h1 {
+    margin: 0;
+    font: inherit;
+    color: #fff;
+  }
+}
+
+.brand-mark img {
+  display: block;
+  width: 40px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 36px;
+  height: 100%;
+  align-items: center;
+
+  a {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    color: #b8c2bc;
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+
+    &.active,
+    &:hover {
+      color: #fff;
+    }
+
+    &.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--lime);
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    padding: 0 20px;
+  }
+
+  .main-nav {
+    gap: 6px;
+
+    a {
+      font-size: 11px;
+    }
+  }
+}
