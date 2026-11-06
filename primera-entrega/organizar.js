@@ -10,6 +10,11 @@
 const $ = (s, r = document) => r.querySelector(s);
 
 /**
+ * Cantidad máxima de duplas permitidas en un torneo.
+ * @constant {number}
+ */
+const MAX_DUPLAS = 16;
+/**
  * Crea una copia de un <template> del HTML, adoptada por el documento (para que funcionen sus eventos).
  * @method clone
  * @param {string} id - Nombre del template (sin el prefijo "tpl-")
@@ -156,8 +161,12 @@ const elegirTipo = el => { S.type = el.dataset.type; dibujarTipos() };
  * @return {void}
  */
 const cargarEjemplo = () => {
-  const ejemplos = $("#demo").dataset.duplas.split("|");
+  if (S.teams.length + 8 > MAX_DUPLAS) {
+    alert(`No se pueden cargar las 8 duplas de ejemplo: el máximo es ${MAX_DUPLAS} duplas.`);
+    return;
+  }
 
+  const ejemplos = $("#demo").dataset.duplas.split("|");
   for (let i = 0; i < 8; i++) {
     let dupla = ejemplos[i];
 
@@ -202,6 +211,8 @@ const agregarDupla = () => {
       .join("/");
 
   if (!v) alert("Escribí el nombre de la dupla antes de agregarla.");
+  else if (S.teams.length >= MAX_DUPLAS)
+    alert(`El torneo admite como máximo ${MAX_DUPLAS} duplas.`);
   else if (v.split("/").length !== 2 || v.split("/").some((j) => !j.trim()))
     alert("Ingresá dos jugadores separados por una barra (/).");
   else if (S.teams.some((t) => normalizar(t) === normalizar(v)))
