@@ -1,8 +1,8 @@
-@use "./header";
-@use "./inicio";
-@use "./torneos";
-@use "./organizar";
-@use "./footer";
+@use "@/styles/header";
+@use "@/styles/inicio";
+@use "@/styles/torneos";
+@use "@/styles/organizar";
+@use "@/styles/footer";
 
 :root {
   --mist: #f4f6f2;
