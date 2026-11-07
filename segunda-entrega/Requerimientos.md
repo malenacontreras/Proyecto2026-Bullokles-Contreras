@@ -2,29 +2,29 @@
 
 
 ## Sobre Readme.md
-- [ ] Actualizar el readme.md para incluir pasos de ejecución del proyecto
-- [ ] Actualizar tecnologías usadas
+- [X] Actualizar el readme.md para incluir pasos de ejecución del proyecto
+- [X] Actualizar tecnologías usadas
 
 ## Sobre Package
-- Incluir los scripts necesarios para ejecución del proyecto y mock de servicios
-- Las dependencias NO deben tener vulnerabilidades
+- [X] Incluir los scripts necesarios para ejecución del proyecto y mock de servicios
+- [X] Las dependencias NO deben tener vulnerabilidades
 
 #### Sobre Reac
-- [ ] Se debe emplear **Vite** para instalar **React**
-- [ ] Se debe emplear **Hooks**, useState, useEffect, useNavigate
-- [ ] Se debe emplear **react-router-dom** para el enrutamiento a otras páginas
-- [ ] Se debe emplear **outlet** para que un componente principal renderice componentes de rutas hijas.
-- [ ] La estructura del proyecto (carpetas) debe ser el correcto: components, pages, styles, api
-- [ ] Los **imports** deben ser usando con **alias**
-- [ ] Emplear al menos una imagen en **/public** y una en **assets**
-- [ ] Validaciones en tiempo real con onChange + mensajes de error accesibles.
-- [ ] Crear al menos un componente genérico (ej: Button, Card, Input) y reutilizarlo en varias páginas.
-- [ ] Guardar algún dato en localStorage (ej: preferencias de tema o un carrito de compras).
-- [ ] NO se deben declarar atributos que NO son usados en ningún sitio
-- [ ] Emplear mock de al menos un servicio (db.json) y permitir al menos una de estas acciones: get/read, post/add, patch/update, delete
-- [ ] Emplear **fetch** y funciones **async**/**await** (en lugar del .then)
-- [ ] El formato de la información debería ser similar al siguiente:
-````javascript
+- [X] Se debe emplear **Vite** para instalar **React**
+- [X] Se debe emplear **Hooks**, useState, useEffect, useNavigate
+- [X] Se debe emplear **react-router-dom** para el enrutamiento a otras páginas
+- [X] Se debe emplear **outlet** para que un componente principal renderice componentes de rutas hijas.
+- [X] La estructura del proyecto (carpetas) debe ser el correcto: components, pages, styles, api
+- [X] Los **imports** deben ser usando con **alias**
+- [X] Emplear al menos una imagen en **/public** y una en **assets**
+- [X] Validaciones en tiempo real con onChange + mensajes de error accesibles.
+- [X] Crear al menos un componente genérico (ej: Button, Card, Input) y reutilizarlo en varias páginas.
+- [X] Guardar algún dato en localStorage (ej: preferencias de tema o un carrito de compras).
+- [X] NO se deben declarar atributos que NO son usados en ningún sitio
+- [X] Emplear mock de al menos un servicio (db.json) y permitir al menos una de estas acciones: get/read, post/add, patch/update, delete
+- [X] Emplear **fetch** y funciones **async**/**await** (en lugar del .then)
+- [X] El formato de la información debería ser similar al siguiente:
+````json
 "productos": [
     {
       "id": 1,
@@ -50,14 +50,14 @@
 ````
 
 ## Sobre SASS
-- [ ] Todos los archivos de estilos deben encontrarse dentro de la carpeta **styles**
-- [ ] El import de los estilos debe realizarse empleando alias
-- [ ] Todos los estilos deben ser aplicados en archivos **.scss**
+- [X] Todos los archivos de estilos deben encontrarse dentro de la carpeta **styles**
+- [X] El import de los estilos debe realizarse empleando alias
+- [X] Todos los estilos deben ser aplicados en archivos **.scss**
 
 ## Sobre el proyecto general
-- [ ] Todas las correcciones y mejoras (sugerencias) solicitadas durante el primer parcial deben estar corregidas.
-- [ ] No debe haber errores presentes en el código (realizar *Code* > *Inspect Code* para verificar que no haya errores)
-- [ ] No deben existir imports innecesarios
+- [X] Todas las correcciones y mejoras (sugerencias) solicitadas durante el primer parcial deben estar corregidas.
+- [X] No debe haber errores presentes en el código (realizar *Code* > *Inspect Code* para verificar que no haya errores)
+- [X] No deben existir imports innecesarios
 
 #### Sobre las Correcciones
 - [ ] Se corregirá el proyecto con el último commit realizado en Github hasta las 23:59 del día anterior a la fecha de entrega
