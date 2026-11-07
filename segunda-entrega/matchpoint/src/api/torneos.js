@@ -2,6 +2,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 /**
  * Obtiene todos los torneos del mock (json-server).
+ * @method getTorneos
  * @return {Promise<Array>} Lista de torneos.
  */
 export const getTorneos = async () => {

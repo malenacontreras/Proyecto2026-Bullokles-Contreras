@@ -10,6 +10,7 @@ import {
 
 /**
  * Cabecera del torneo: nombre, tipo, descripción, mapa y progreso.
+ * @method CabeceraTorneo
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.torneo - Torneo actual
  * @param {Function} props.onNuevoTorneo - Descarta el torneo para crear otro

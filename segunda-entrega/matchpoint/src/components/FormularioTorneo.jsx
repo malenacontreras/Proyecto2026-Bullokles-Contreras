@@ -50,7 +50,9 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Guarda el nombre de la dupla y lo valida mientras se escribe.
+   * @method cambiarDupla
    * @param {Event} e - Evento del input
+   * @return {void}
    */
   const cambiarDupla = (e) => {
     const valor = e.target.value;
@@ -60,6 +62,8 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Agrega la dupla escrita si es válida.
+   * @method agregarDupla
+   * @return {void}
    */
   const agregarDupla = () => {
     const error = validarDupla(dupla, duplas);
@@ -71,6 +75,8 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Carga las 8 duplas de ejemplo si no se supera el máximo.
+   * @method cargarEjemplo
+   * @return {void}
    */
   const cargarEjemplo = () => {
     if (duplas.length + DUPLAS_EJEMPLO.length > MAX_DUPLAS) {
@@ -85,7 +91,9 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Quita una dupla de la lista.
+   * @method quitarDupla
    * @param {number} indice - Posición de la dupla a quitar
+   * @return {void}
    */
   const quitarDupla = (indice) => {
     setDuplas(duplas.filter((_, i) => i !== indice));
@@ -94,8 +102,10 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Elige el tipo de torneo con el teclado (Enter o espacio).
+   * @method elegirTipoConTeclado
    * @param {KeyboardEvent} e - Evento del teclado
    * @param {string} nuevoTipo - Tipo de torneo de la tarjeta
+   * @return {void}
    */
   const elegirTipoConTeclado = (e, nuevoTipo) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -106,6 +116,8 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Valida el formulario y, si está todo bien, crea el torneo.
+   * @method generarTorneo
+   * @return {void}
    */
   const generarTorneo = () => {
     const error = validarNombreTorneo(nombre);
