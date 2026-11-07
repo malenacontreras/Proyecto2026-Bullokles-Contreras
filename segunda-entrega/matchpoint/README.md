@@ -141,7 +141,7 @@ matchpoint/
 ├── public/            Imágenes públicas (fotos de torneos, logo y favicon)
 ├── src/
 │   ├── api/           Funciones que consumen el mock con fetch y async/await
-│   ├── assets/        Imágenes importadas desde los componentes (logo)
+│   ├── assets/        Imágenes procesadas por Vite (logo y fondo del inicio)
 │   ├── components/    Componentes reutilizables (Header, Footer, Button, etc.)
 │   ├── data/          Mock de servicios (db.json) y datos fijos del organizador
 │   ├── pages/         Páginas de cada ruta (Inicio, Torneos, Organizar)
@@ -150,6 +150,7 @@ matchpoint/
 │   ├── App.jsx        Rutas y layout principal
 │   └── main.jsx       Punto de entrada
 ├── .env               Dirección del mock de servicios
+├── jsconfig.json      Alias @ para el editor (WebStorm / VS Code)
 ├── index.html
 ├── package.json
 └── vite.config.js     Configuración de Vite y del alias @
