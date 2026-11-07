@@ -8,21 +8,21 @@ import Button from "@/components/Button";
 const Torneos = () => {
   const [torneos, setTorneos] = useState([]);
 
-const [busqueda, setBusqueda] = useState(
-  () => localStorage.getItem("matchpoint-busqueda") || "",
-);
+  const [busqueda, setBusqueda] = useState(
+    () => localStorage.getItem("matchpoint-busqueda") || "",
+  );
 
-const [mes, setMes] = useState(
-  () => localStorage.getItem("matchpoint-mes") || "",
-);
+  const [mes, setMes] = useState(
+    () => localStorage.getItem("matchpoint-mes") || "",
+  );
 
-const [nivel, setNivel] = useState(
-  () => localStorage.getItem("matchpoint-nivel") || "",
-);
+  const [nivel, setNivel] = useState(
+    () => localStorage.getItem("matchpoint-nivel") || "",
+  );
 
-const [ubicacion, setUbicacion] = useState(
-  () => localStorage.getItem("matchpoint-ubicacion") || "",
-);
+  const [ubicacion, setUbicacion] = useState(
+    () => localStorage.getItem("matchpoint-ubicacion") || "",
+  );
 
   const [torneoSeleccionado, setTorneoSeleccionado] = useState(null);
 
@@ -39,18 +39,18 @@ const [ubicacion, setUbicacion] = useState(
     cargarTorneos();
   }, []);
 
-useEffect(() => {
-  localStorage.setItem("matchpoint-busqueda", busqueda);
-  localStorage.setItem("matchpoint-mes", mes);
-  localStorage.setItem("matchpoint-nivel", nivel);
-  localStorage.setItem("matchpoint-ubicacion", ubicacion);
-}, [busqueda, mes, nivel, ubicacion]);
+  useEffect(() => {
+    localStorage.setItem("matchpoint-busqueda", busqueda);
+    localStorage.setItem("matchpoint-mes", mes);
+    localStorage.setItem("matchpoint-nivel", nivel);
+    localStorage.setItem("matchpoint-ubicacion", ubicacion);
+  }, [busqueda, mes, nivel, ubicacion]);
 
 
   const torneosFiltrados = torneos.filter((torneo) => {
-      const coincideBusqueda = torneo.nombre
-        .toLowerCase()
-        .includes(busqueda.trim().toLowerCase());
+    const coincideBusqueda = torneo.nombre
+      .toLowerCase()
+      .includes(busqueda.trim().toLowerCase());
 
     const coincideMes = !mes || torneo.mes === mes;
     const coincideNivel = !nivel || torneo.categoria === nivel;
@@ -73,8 +73,7 @@ useEffect(() => {
       <div className="page-head">
         <div className="eyebrow">Calendario abierto</div>
         <h2 className="page-title">Torneos</h2>
-        <p className="page-subtitle">
-          Explorá los torneos publicados y hacé click en uno para ver sus
+        <p>          Explorá los torneos publicados y hacé click en uno para ver sus
           detalles.
         </p>
       </div>
@@ -136,8 +135,7 @@ useEffect(() => {
         </Button>
       </div>
 
-      <div className="cards-grid" id="tournament-grid">
-        {torneosFiltrados.length === 0 ? (
+      <div className="cards-grid">        {torneosFiltrados.length === 0 ? (
           <div className="sin-resultados">
             <h3>No se encontraron torneos</h3>
             <p>
@@ -184,7 +182,7 @@ useEffect(() => {
 
             <div className="modal-body">
               <span
-                  className={`level ${obtenerClaseNivel(torneoSeleccionado.categoria)}`}
+                className={`level ${obtenerClaseNivel(torneoSeleccionado.categoria)}`}
               >
                 {torneoSeleccionado.categoria}
               </span>
