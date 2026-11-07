@@ -18,7 +18,6 @@ import {
 const CabeceraTorneo = ({ torneo, onNuevoTorneo }) => {
   const cantidadJugados = jugados(torneo).length;
   const total = totalPartidos(torneo);
-  const progreso = Math.min(100, Math.round((100 * cantidadJugados) / total));
   const tipo = TIPOS_TORNEO.find((t) => t.tipo === torneo.type);
 
   return (
@@ -54,9 +53,12 @@ const CabeceraTorneo = ({ torneo, onNuevoTorneo }) => {
           ></iframe>
         </>
       )}
-      <div className="bar">
-        <i style={{ width: `${progreso}%` }}></i>
-      </div>
+      <progress
+        className="bar"
+        value={cantidadJugados}
+        max={total}
+        aria-label="Progreso del torneo"
+      ></progress>
       <div className="sub mts">
         <span>
           {cantidadJugados} de {total} partidos

@@ -13,7 +13,7 @@ const TablaPosiciones = ({ ids, partidos, clasificados, duplas }) => {
   return (
     <div className="tw">
       <table>
-        <caption className="sr-only">Tabla de posiciones del torneo</caption>
+        <caption className="visually-hidden">Tabla de posiciones del torneo</caption>
         <thead>
           <tr>
             <th>#</th>

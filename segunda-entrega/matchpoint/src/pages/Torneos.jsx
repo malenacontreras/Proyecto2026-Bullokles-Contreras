@@ -5,8 +5,15 @@ import { obtenerClaseNivel } from "@/utils/niveles";
 import { formatearPrecio } from "@/utils/formato";
 import Button from "@/components/Button";
 
+/**
+ * Página de torneos: lista los torneos del mock con buscador, filtros y detalles.
+ * @method Torneos
+ * @return {JSX.Element} Página de torneos
+ */
 const Torneos = () => {
   const [torneos, setTorneos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  const [errorCarga, setErrorCarga] = useState("");
 
   const [busqueda, setBusqueda] = useState(
     () => localStorage.getItem("matchpoint-busqueda") || "",
@@ -27,12 +34,21 @@ const Torneos = () => {
   const [torneoSeleccionado, setTorneoSeleccionado] = useState(null);
 
   useEffect(() => {
+    /**
+     * Trae los torneos del mock y avisa si no se pudieron cargar.
+     * @method cargarTorneos
+     * @return {Promise<void>}
+     */
     const cargarTorneos = async () => {
       try {
         const datos = await getTorneos();
         setTorneos(datos);
-      } catch (error) {
-        console.error("Error al cargar los torneos:", error);
+      } catch {
+        setErrorCarga(
+          "Verificá que el mock de servicios esté funcionando (npm run services).",
+        );
+      } finally {
+        setCargando(false);
       }
     };
 
@@ -45,7 +61,6 @@ const Torneos = () => {
     localStorage.setItem("matchpoint-nivel", nivel);
     localStorage.setItem("matchpoint-ubicacion", ubicacion);
   }, [busqueda, mes, nivel, ubicacion]);
-
 
   const torneosFiltrados = torneos.filter((torneo) => {
     const coincideBusqueda = torneo.nombre
@@ -61,6 +76,11 @@ const Torneos = () => {
     );
   });
 
+  /**
+   * Vuelve todos los filtros a su valor inicial.
+   * @method limpiarFiltros
+   * @return {void}
+   */
   const limpiarFiltros = () => {
     setBusqueda("");
     setMes("");
@@ -73,7 +93,8 @@ const Torneos = () => {
       <div className="page-head">
         <div className="eyebrow">Calendario abierto</div>
         <h2 className="page-title">Torneos</h2>
-        <p>          Explorá los torneos publicados y hacé click en uno para ver sus
+        <p>
+          Explorá los torneos publicados y hacé click en uno para ver sus
           detalles.
         </p>
       </div>
@@ -135,22 +156,36 @@ const Torneos = () => {
         </Button>
       </div>
 
-      <div className="cards-grid">        {torneosFiltrados.length === 0 ? (
+      <div className="cards-grid">
+        {cargando && (
+          <div className="sin-resultados">
+            <p>Cargando torneos...</p>
+          </div>
+        )}
+
+        {!cargando && errorCarga && (
+          <div className="sin-resultados" role="alert">
+            <h3>No se pudieron cargar los torneos</h3>
+            <p>{errorCarga}</p>
+          </div>
+        )}
+
+        {!cargando && !errorCarga && torneosFiltrados.length === 0 && (
           <div className="sin-resultados">
             <h3>No se encontraron torneos</h3>
             <p>
               Probá ajustando los filtros de búsqueda para ver más resultados.
             </p>
           </div>
-        ) : (
-          torneosFiltrados.map((torneo) => (
-            <TorneoCard
-              key={torneo.id}
-              torneo={torneo}
-              onSeleccionar={setTorneoSeleccionado}
-            />
-          ))
         )}
+
+        {torneosFiltrados.map((torneo) => (
+          <TorneoCard
+            key={torneo.id}
+            torneo={torneo}
+            onSeleccionar={setTorneoSeleccionado}
+          />
+        ))}
       </div>
 
       {torneoSeleccionado && (
@@ -190,12 +225,14 @@ const Torneos = () => {
               <h2>{torneoSeleccionado.nombre}</h2>
 
               <p>{torneoSeleccionado.description}</p>
+
               <div className="meta-list">
                 <span className="meta-item">📅 {torneoSeleccionado.fecha}</span>
 
                 <span className="meta-item">
                   📍 {torneoSeleccionado.ubicacion}
                 </span>
+
                 <span className="meta-item">
                   👥 {torneoSeleccionado.jugadores}
                 </span>

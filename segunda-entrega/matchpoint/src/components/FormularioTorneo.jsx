@@ -178,7 +178,7 @@ const FormularioTorneo = ({ onCrear }) => {
           👥 Duplas ({duplas.length}/{MAX_DUPLAS})
         </h3>
         <div className="row">
-          <label htmlFor="nombre-dupla" className="sr-only">
+          <label htmlFor="nombre-dupla" className="visually-hidden">
             Nombre de la dupla
           </label>
           <input

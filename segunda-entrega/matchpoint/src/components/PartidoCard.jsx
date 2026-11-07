@@ -56,8 +56,7 @@ const PartidoCard = ({
           className={fin && partido[propio] > partido[rival] ? "tr w" : "tr"}
         >
           <span className="n">{nombreDupla(duplas, id)}</span>
-          <span className="arrow"></span>
-          <label htmlFor={`${idBase}-${lado}`} className="sr-only">
+          <label htmlFor={`${idBase}-${lado}`} className="visually-hidden">
             Sets de {nombreDupla(duplas, id)}
           </label>
           <input
