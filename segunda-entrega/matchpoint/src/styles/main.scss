@@ -1,0 +1,77 @@
+@use "@/styles/header";
+@use "@/styles/inicio";
+@use "@/styles/torneos";
+@use "@/styles/organizar";
+@use "@/styles/footer";
+
+:root {
+  --mist: #f4f6f2;
+  --paper: #ffffff;
+  --ink: #0c1b16;
+  --muted: #68736e;
+  --lime: #c8f560;
+  --focus: #2e4400;
+  --line: #e1e6e1;
+  --bad: #e63946;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.5 Inter, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+main {
+  margin-top: 84px;
+}
+
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  color: var(--lime);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
