@@ -13,8 +13,8 @@ const TorneoCard = ({ torneo, onSeleccionar }) => {
           <span className="meta-item">{torneo.jugadores}</span>
         </div>
 
-        <span className={`level ${obtenerClaseNivel(torneo.nivel)}`}>
-          {torneo.nivel}
+        <span className={`level ${obtenerClaseNivel(torneo.categoria)}`}>
+          {torneo.categoria}
         </span>
       </div>
     </article>

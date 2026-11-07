@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TorneoCard from "@/components/TorneoCard";
 import { getTorneos } from "@/api/torneos";
 import { obtenerClaseNivel } from "@/utils/niveles";
+import { formatearPrecio } from "@/utils/formato";
 import Button from "@/components/Button";
 
 const Torneos = () => {
@@ -52,7 +53,7 @@ useEffect(() => {
         .includes(busqueda.trim().toLowerCase());
 
     const coincideMes = !mes || torneo.mes === mes;
-    const coincideNivel = !nivel || torneo.nivel === nivel;
+    const coincideNivel = !nivel || torneo.categoria === nivel;
     const coincideUbicacion = !ubicacion || torneo.ubicacion === ubicacion;
 
     return (
@@ -183,26 +184,36 @@ useEffect(() => {
 
             <div className="modal-body">
               <span
-                className={`level ${obtenerClaseNivel(torneoSeleccionado.nivel)}`}
+                  className={`level ${obtenerClaseNivel(torneoSeleccionado.categoria)}`}
               >
-                {torneoSeleccionado.nivel}
+                {torneoSeleccionado.categoria}
               </span>
 
               <h2>{torneoSeleccionado.nombre}</h2>
 
-              <p>{torneoSeleccionado.descripcion}</p>
-
+              <p>{torneoSeleccionado.description}</p>
               <div className="meta-list">
                 <span className="meta-item">📅 {torneoSeleccionado.fecha}</span>
 
                 <span className="meta-item">
                   📍 {torneoSeleccionado.ubicacion}
                 </span>
-
                 <span className="meta-item">
                   👥 {torneoSeleccionado.jugadores}
                 </span>
+
+                <span className="meta-item">
+                  💲 {formatearPrecio(torneoSeleccionado.precio)} por dupla
+                </span>
               </div>
+
+              <a
+                href={torneoSeleccionado.web}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver ubicación en Google Maps ↗
+              </a>
             </div>
           </div>
         </div>

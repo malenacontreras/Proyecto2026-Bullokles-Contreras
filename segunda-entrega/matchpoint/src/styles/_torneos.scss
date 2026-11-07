@@ -257,6 +257,12 @@
     align-items: center;
     gap: 6px;
   }
+
+  a {
+    color: var(--focus);
+    font-size: 13px;
+    font-weight: 600;
+  }
 }
 
 
