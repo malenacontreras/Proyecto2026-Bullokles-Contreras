@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-
+/**
+ * Pie del sitio con los enlaces a las páginas.
+ * @method Footer
+ * @return {JSX.Element} Pie de página
+ */
 const Footer = () => {
   return (
     <footer className="site-footer">

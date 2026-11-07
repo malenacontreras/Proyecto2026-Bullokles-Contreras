@@ -4,11 +4,12 @@ import TablaPosiciones from "@/components/TablaPosiciones";
 
 /**
  * Primera pestaña del torneo: cuadro, fechas o grupos según el tipo.
+ * @method VistaPartidos
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.torneo - Torneo actual
  * @param {Object<string, string>} props.errores - Errores de sets por partido
  * @param {Function} props.onCargarSet - Función para cargar los sets
- * @returns {JSX.Element} Partidos del torneo
+ * @return {JSX.Element} Partidos del torneo
  */
 const VistaPartidos = ({ torneo, errores, onCargarSet }) => {
   if (torneo.type === "ko") {

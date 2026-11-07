@@ -13,9 +13,10 @@ import {
 
 /**
  * Formulario para crear un torneo nuevo, con validaciones en tiempo real.
+ * @method FormularioTorneo
  * @param {Object} props - Propiedades del componente
  * @param {Function} props.onCrear - Recibe el torneo creado
- * @returns {JSX.Element} Formulario del torneo
+ * @return {JSX.Element} Formulario del torneo
  */
 const FormularioTorneo = ({ onCrear }) => {
   const [nombre, setNombre] = useState("");
@@ -38,7 +39,9 @@ const FormularioTorneo = ({ onCrear }) => {
 
   /**
    * Guarda el nombre del torneo y lo valida mientras se escribe.
+   * @method cambiarNombre
    * @param {Event} e - Evento del input
+   * @return {void}
    */
   const cambiarNombre = (e) => {
     setNombre(e.target.value);

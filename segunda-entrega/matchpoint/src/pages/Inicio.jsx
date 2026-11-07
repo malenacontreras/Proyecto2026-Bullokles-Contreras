@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
-
+/**
+ * Página de inicio: presenta MatchPoint y sus funcionalidades.
+ * @method Inicio
+ * @return {JSX.Element} Página de inicio
+ */
 const Inicio = () => {
   const navigate = useNavigate();
   return (

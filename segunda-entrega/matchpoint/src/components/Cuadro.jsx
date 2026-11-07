@@ -3,11 +3,12 @@ import { NOMBRES_RONDAS } from "@/data/organizar";
 
 /**
  * Cuadro de eliminación directa, con una columna por ronda.
+ * @method Cuadro
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.torneo - Torneo actual
  * @param {Object<string, string>} props.errores - Errores de sets por partido
  * @param {Function} props.onCargarSet - Función para cargar los sets
- * @returns {JSX.Element} Cuadro del torneo
+ * @return {JSX.Element} Cuadro del torneo
  */
 const Cuadro = ({ torneo, errores, onCargarSet }) => {
   const rondas = torneo.ko.rounds;

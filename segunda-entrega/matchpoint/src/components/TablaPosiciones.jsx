@@ -2,12 +2,13 @@ import { nombreDupla, posiciones } from "@/utils/torneo";
 
 /**
  * Tabla de posiciones de un grupo de duplas.
+ * @method TablaPosiciones
  * @param {Object} props - Propiedades del componente
  * @param {number[]} props.ids - Ids de las duplas a mostrar
  * @param {Object[]} props.partidos - Partidos que se tienen en cuenta
  * @param {number} props.clasificados - Cantidad de posiciones que se resaltan
  * @param {string[]} props.duplas - Nombres de las duplas del torneo
- * @returns {JSX.Element} Tabla de posiciones
+ * @return {JSX.Element} Tabla de posiciones
  */
 const TablaPosiciones = ({ ids, partidos, clasificados, duplas }) => {
   return (

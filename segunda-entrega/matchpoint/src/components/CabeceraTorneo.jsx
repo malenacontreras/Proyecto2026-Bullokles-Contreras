@@ -13,7 +13,7 @@ import {
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.torneo - Torneo actual
  * @param {Function} props.onNuevoTorneo - Descarta el torneo para crear otro
- * @returns {JSX.Element} Cabecera del torneo
+ * @return {JSX.Element} Cabecera del torneo
  */
 const CabeceraTorneo = ({ torneo, onNuevoTorneo }) => {
   const cantidadJugados = jugados(torneo).length;

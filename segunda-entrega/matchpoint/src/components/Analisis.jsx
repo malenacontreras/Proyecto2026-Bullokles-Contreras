@@ -3,9 +3,10 @@ import { campeon, jugados, nombreDupla, posiciones } from "@/utils/torneo";
 
 /**
  * Análisis del torneo terminado (o un aviso si todavía no terminó).
+ * @method Analisis
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.torneo - Torneo actual
- * @returns {JSX.Element} Análisis del torneo
+ * @return {JSX.Element} Análisis del torneo
  */
 const Analisis = ({ torneo }) => {
   const idCampeon = campeon(torneo);

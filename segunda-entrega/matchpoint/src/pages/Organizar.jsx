@@ -9,7 +9,11 @@ import { PESTANIAS } from "@/data/organizar";
 import { cargarSet, iniciarFaseFinal } from "@/utils/torneo";
 
 const CLAVE_TORNEO = "matchpoint-torneo";
-
+/**
+ * Página para organizar un torneo: muestra el formulario o el torneo en curso.
+ * @method Organizar
+ * @return {JSX.Element} Página de organizar torneo
+ */
 const Organizar = () => {
   const [torneo, setTorneo] = useState(() =>
     JSON.parse(localStorage.getItem(CLAVE_TORNEO)),
@@ -26,9 +30,11 @@ const Organizar = () => {
 
   /**
    * Carga los sets de un partido y guarda el error si el valor no es válido.
+   * @method actualizarSet
    * @param {string} referencia - Referencia del partido
    * @param {string} clave - "sa" o "sb" según la dupla
    * @param {string} valor - Valor escrito en el input
+   * @return {void}
    */
   const actualizarSet = (referencia, clave, valor) => {
     const resultado = cargarSet(torneo, referencia, clave, valor);
@@ -38,6 +44,8 @@ const Organizar = () => {
 
   /**
    * Descarta el torneo actual (con confirmación) y vuelve al formulario.
+   * @method nuevoTorneo
+   * @return {void}
    */
   const nuevoTorneo = () => {
     if (!window.confirm("¿Descartar este torneo y crear uno nuevo?")) return;

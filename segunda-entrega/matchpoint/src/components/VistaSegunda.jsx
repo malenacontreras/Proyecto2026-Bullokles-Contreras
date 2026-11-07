@@ -5,12 +5,13 @@ import { todosTerminados } from "@/utils/torneo";
 
 /**
  * Segunda pestaña del torneo: posiciones (todos contra todos) o fase final (grupos).
+ * @method VistaSegunda
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.torneo - Torneo actual
  * @param {Object<string, string>} props.errores - Errores de sets por partido
  * @param {Function} props.onCargarSet - Función para cargar los sets
  * @param {Function} props.onIniciarFaseFinal - Genera la fase final
- * @returns {JSX.Element} Posiciones o fase final
+ * @return {JSX.Element} Posiciones o fase final
  */
 const VistaSegunda = ({ torneo, errores, onCargarSet, onIniciarFaseFinal }) => {
   if (torneo.type === "rr") {

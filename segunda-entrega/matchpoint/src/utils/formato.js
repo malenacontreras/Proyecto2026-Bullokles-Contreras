@@ -1,7 +1,7 @@
 /**
  * Da formato de pesos argentinos a un precio.
  * @param {number} precio - Precio a mostrar
- * @returns {string} Precio con formato, por ejemplo "$30.000"
+ * @return {string} Precio con formato, por ejemplo "$30.000"
  */
 export const formatearPrecio = (precio) =>
   precio.toLocaleString("es-AR", {
@@ -9,4 +9,3 @@ export const formatearPrecio = (precio) =>
     currency: "ARS",
     maximumFractionDigits: 0,
   });
-  

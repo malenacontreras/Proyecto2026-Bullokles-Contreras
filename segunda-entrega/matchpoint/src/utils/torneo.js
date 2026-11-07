@@ -2,9 +2,10 @@ import { DUPLAS_EJEMPLO, MAX_DUPLAS } from "@/data/organizar";
 
 /**
  * Devuelve el nombre de una dupla a partir de su id.
+ * @method nombreDupla
  * @param {string[]} duplas - Nombres de las duplas del torneo
  * @param {(number|string|null)} id - Índice de la dupla, "BYE" o null
- * @returns {string} Nombre a mostrar
+ * @return {string} Nombre a mostrar
  */
 export const nombreDupla = (duplas, id) => {
   if (id === "BYE") return "Libre (pasa)";
@@ -14,8 +15,9 @@ export const nombreDupla = (duplas, id) => {
 
 /**
  * Indica si un partido está terminado (mejor de 3 sets: gana quien llega a 2).
+ * @method terminado
  * @param {Object} partido - Partido con los sets sa y sb
- * @returns {boolean} true si el resultado es válido y definitivo
+ * @return {boolean} true si el resultado es válido y definitivo
  */
 export const terminado = (partido) =>
   (partido.sa === 2 && [0, 1].includes(partido.sb)) ||
@@ -23,16 +25,18 @@ export const terminado = (partido) =>
 
 /**
  * Devuelve el ganador de un partido ya terminado.
+ * @method ganadorPorSets
  * @param {Object} partido - Partido terminado
- * @returns {(number|string)} Id de la dupla ganadora
+ * @return {(number|string)} Id de la dupla ganadora
  */
 const ganadorPorSets = (partido) =>
   partido.sa > partido.sb ? partido.a : partido.b;
 
 /**
  * Mezcla un arreglo al azar (Fisher-Yates), modificándolo en el lugar.
+ * @method mezclar
  * @param {Array} lista - Arreglo a mezclar
- * @returns {Array} El mismo arreglo mezclado
+ * @return {Array} El mismo arreglo mezclado
  */
 const mezclar = (lista) => {
   for (let i = lista.length - 1; i > 0; i--) {
@@ -44,18 +48,20 @@ const mezclar = (lista) => {
 
 /**
  * Crea un partido sin resultado.
+ * @method crearPartido
  * @param {(number|string|null)} a - Id de la dupla A
  * @param {(number|string|null)} b - Id de la dupla B
  * @param {Object} [extra={}] - Propiedades extra (fecha y grupo)
- * @returns {Object} Partido con los sets vacíos
+ * @return {Object} Partido con los sets vacíos
  */
 const crearPartido = (a, b, extra = {}) => ({ a, b, sa: "", sb: "", ...extra });
 
 /**
  * Genera el fixture todos contra todos con el método del círculo.
+ * @method todosContraTodos
  * @param {number[]} ids - Ids de las duplas
  * @param {number} [grupo] - Número de grupo (opcional)
- * @returns {Object[]} Lista de partidos con su fecha
+ * @return {Object[]} Lista de partidos con su fecha
  */
 const todosContraTodos = (ids, grupo) => {
   const lista = ids.slice();
@@ -79,8 +85,9 @@ const todosContraTodos = (ids, grupo) => {
 
 /**
  * Calcula el orden estándar de un cuadro (1 vs último, 2 vs anteúltimo...).
+ * @method ordenSiembra
  * @param {number} n - Tamaño del cuadro (potencia de 2)
- * @returns {number[]} Posiciones de siembra en orden
+ * @return {number[]} Posiciones de siembra en orden
  */
 const ordenSiembra = (n) => {
   let orden = [1];
@@ -93,8 +100,9 @@ const ordenSiembra = (n) => {
 
 /**
  * Devuelve el ganador de un partido de eliminación (considera los libres).
+ * @method ganador
  * @param {Object} partido - Partido de eliminación
- * @returns {(number|null)} Id del ganador o null si todavía no se definió
+ * @return {(number|null)} Id del ganador o null si todavía no se definió
  */
 const ganador = (partido) => {
   if (partido.a === "BYE") return partido.b;
@@ -105,8 +113,9 @@ const ganador = (partido) => {
 
 /**
  * Pasa los ganadores a la ronda siguiente y limpia el resultado si cambió el cruce.
+ * @method propagarGanadores
  * @param {Object} ko - Cuadro de eliminación con sus rondas
- * @returns {void}
+ * @return {void}
  */
 const propagarGanadores = (ko) => {
   const rondas = ko.rounds;
@@ -123,8 +132,9 @@ const propagarGanadores = (ko) => {
 
 /**
  * Arma el cuadro de eliminación directa; los mejores sembrados reciben los libres.
+ * @method armarCuadro
  * @param {number[]} sembrados - Ids de las duplas ordenados por siembra
- * @returns {Object} Cuadro con sus rondas
+ * @return {Object} Cuadro con sus rondas
  */
 const armarCuadro = (sembrados) => {
   const n = sembrados.length;
@@ -155,27 +165,37 @@ const armarCuadro = (sembrados) => {
 
 /**
  * Devuelve la cantidad mínima de duplas que necesita un tipo de torneo.
+ * @method minimoDuplas
  * @param {string} tipo - Tipo de torneo ("ko", "groups" o "rr")
- * @returns {number} Mínimo de duplas
+ * @return {number} Mínimo de duplas
  */
 export const minimoDuplas = (tipo) => (tipo === "groups" ? 6 : 3);
 
 /**
  * Valida el nombre del torneo.
+ * @method validarNombreTorneo
  * @param {string} nombre - Nombre ingresado
- * @returns {string} Mensaje de error, o cadena vacía si es correcto
+ * @return {string} Mensaje de error, o cadena vacía si es correcto
  */
 export const validarNombreTorneo = (nombre) =>
   nombre.trim() ? "" : "Poné un nombre al torneo.";
 
 /**
  * Valida el nombre de una dupla antes de agregarla.
+ * @method validarDupla
  * @param {string} valor - Nombre ingresado
  * @param {string[]} duplas - Duplas ya cargadas
- * @returns {string} Mensaje de error, o cadena vacía si es correcto
+ * @return {string} Mensaje de error, o cadena vacía si es correcto
  */
 export const validarDupla = (valor, duplas) => {
   const v = valor.trim();
+
+  /**
+   * Pasa un nombre de dupla a minúsculas y ordena sus jugadores, para comparar duplas.
+   * @method normalizar
+   * @param {string} nombre - Nombre de la dupla
+   * @return {string} Nombre normalizado
+   */
   const normalizar = (nombre) =>
     nombre
       .toLowerCase()
@@ -199,8 +219,9 @@ export const validarDupla = (valor, duplas) => {
 
 /**
  * Agrega las 8 duplas de ejemplo. Si alguna ya existe, usa un nombre genérico.
+ * @method agregarEjemplo
  * @param {string[]} duplas - Duplas ya cargadas
- * @returns {string[]} Nueva lista de duplas
+ * @return {string[]} Nueva lista de duplas
  */
 export const agregarEjemplo = (duplas) => {
   const nuevas = duplas.slice();
@@ -220,8 +241,9 @@ export const agregarEjemplo = (duplas) => {
 
 /**
  * Crea el torneo con los datos del formulario.
+ * @method crearTorneo
  * @param {Object} datos - Nombre, descripción, lugar, sorteo, tipo y duplas
- * @returns {Object} Torneo listo para jugar
+ * @return {Object} Torneo listo para jugar
  */
 export const crearTorneo = ({
   nombre,
@@ -270,9 +292,10 @@ export const crearTorneo = ({
 
 /**
  * Calcula la tabla de posiciones: 3 puntos por victoria, desempate por diferencia de sets y sets ganados.
+ * @method posiciones
  * @param {number[]} ids - Ids de las duplas a incluir
  * @param {Object[]} partidos - Partidos a considerar
- * @returns {Object[]} Filas ordenadas con pj, g, p, sf, sc y pts
+ * @return {Object[]} Filas ordenadas con pj, g, p, sf, sc y pts
  */
 export const posiciones = (ids, partidos) => {
   const filas = {};
@@ -304,15 +327,17 @@ export const posiciones = (ids, partidos) => {
 
 /**
  * Indica si todos los partidos del fixture están terminados.
+ * @method todosTerminados
  * @param {Object} torneo - Torneo actual
- * @returns {boolean} true si no queda ningún partido pendiente
+ * @return {boolean} true si no queda ningún partido pendiente
  */
 export const todosTerminados = (torneo) => torneo.matches.every(terminado);
 
 /**
  * Genera la fase final de eliminación con los clasificados de cada grupo.
+ * @method iniciarFaseFinal
  * @param {Object} torneo - Torneo con la fase de grupos terminada
- * @returns {Object} Nuevo torneo con el cuadro de la fase final
+ * @return {Object} Nuevo torneo con el cuadro de la fase final
  */
 export const iniciarFaseFinal = (torneo) => {
   const tablas = torneo.groups.map((grupo) =>
@@ -334,8 +359,9 @@ export const iniciarFaseFinal = (torneo) => {
 
 /**
  * Determina el campeón del torneo si ya terminó.
+ * @method campeon
  * @param {Object} torneo - Torneo actual
- * @returns {(number|null)} Id de la dupla campeona o null
+ * @return {(number|null)} Id de la dupla campeona o null
  */
 export const campeon = (torneo) => {
   if (torneo.type === "rr") {
@@ -351,8 +377,9 @@ export const campeon = (torneo) => {
 
 /**
  * Reúne todos los partidos ya jugados (fixture y eliminación).
+ * @method jugados
  * @param {Object} torneo - Torneo actual
- * @returns {Object[]} Partidos terminados
+ * @return {Object[]} Partidos terminados
  */
 export const jugados = (torneo) =>
   [...torneo.matches, ...(torneo.ko ? torneo.ko.rounds.flat() : [])].filter(
@@ -361,8 +388,9 @@ export const jugados = (torneo) =>
 
 /**
  * Calcula la cantidad total de partidos que tendrá el torneo.
+ * @method totalPartidos
  * @param {Object} torneo - Torneo actual
- * @returns {number} Total de partidos
+ * @return {number} Total de partidos
  */
 export const totalPartidos = (torneo) => {
   let total = torneo.matches.length;
@@ -379,9 +407,10 @@ export const totalPartidos = (torneo) => {
 
 /**
  * Obtiene un partido a partir de su referencia ("m,i" para fixture o "k,ronda,i" para eliminación).
+ * @method obtenerPartido
  * @param {Object} torneo - Torneo actual
  * @param {string} referencia - Referencia del partido
- * @returns {Object} El partido
+ * @return {Object} El partido
  */
 const obtenerPartido = (torneo, referencia) => {
   const partes = referencia.split(",");
@@ -392,9 +421,10 @@ const obtenerPartido = (torneo, referencia) => {
 
 /**
  * Comprueba un resultado de sets (mejor de 3: de 0 a 2 por dupla y máximo 3 sets en total).
+ * @method validarSet
  * @param {(number|string)} sets - Sets ingresados ("" si el campo está vacío)
  * @param {(number|string)} rival - Sets de la otra dupla
- * @returns {string} Mensaje de error, o cadena vacía si el valor es correcto
+ * @return {string} Mensaje de error, o cadena vacía si el valor es correcto
  */
 const validarSet = (sets, rival) => {
   if (sets !== "" && !(Number.isInteger(sets) && sets >= 0 && sets <= 2)) {
@@ -408,11 +438,12 @@ const validarSet = (sets, rival) => {
 
 /**
  * Carga los sets de una dupla en un partido. Si el valor es inválido lo deja vacío.
+ * @method cargarSet
  * @param {Object} torneo - Torneo actual
  * @param {string} referencia - Referencia del partido
  * @param {string} clave - "sa" o "sb" según la dupla
  * @param {string} valor - Valor escrito en el input
- * @returns {{torneo: Object, error: string}} Nuevo torneo y mensaje de error
+ * @return {{torneo: Object, error: string}} Nuevo torneo y mensaje de error
  */
 export const cargarSet = (torneo, referencia, clave, valor) => {
   const nuevo = structuredClone(torneo);
@@ -433,16 +464,18 @@ export const cargarSet = (torneo, referencia, clave, valor) => {
 
 /**
  * Arma la dirección del mapa de Google Maps para mostrar en un iframe.
+ * @method urlMapa
  * @param {string} lugar - Lugar del torneo
- * @returns {string} URL del mapa embebido
+ * @return {string} URL del mapa embebido
  */
 export const urlMapa = (lugar) =>
   `https://maps.google.com/maps?q=${encodeURIComponent(lugar)}&output=embed`;
 
 /**
  * Arma la dirección para abrir el lugar en Google Maps.
+ * @method urlBusquedaMapa
  * @param {string} lugar - Lugar del torneo
- * @returns {string} URL de búsqueda en Google Maps
+ * @return {string} URL de búsqueda en Google Maps
  */
 export const urlBusquedaMapa = (lugar) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lugar)}`;

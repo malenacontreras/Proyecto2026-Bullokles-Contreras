@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
+/**
+ * Cabecera del sitio con el logo y la navegación principal.
+ * @method Header
+ * @return {JSX.Element} Cabecera
+ */
 const Header = () => {
   return (
     <header className="site-header">

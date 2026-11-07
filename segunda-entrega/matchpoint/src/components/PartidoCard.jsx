@@ -2,6 +2,7 @@ import { nombreDupla, terminado } from "@/utils/torneo";
 
 /**
  * Tarjeta de un partido con los inputs para cargar los sets (o el aviso de pase libre).
+ * @method PartidoCard
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.partido - Partido a mostrar
  * @param {string} props.referencia - Referencia del partido ("m,i" o "k,ronda,i")
@@ -9,7 +10,7 @@ import { nombreDupla, terminado } from "@/utils/torneo";
  * @param {string[]} props.duplas - Nombres de las duplas del torneo
  * @param {string} [props.error] - Mensaje de error del último set cargado
  * @param {Function} props.onCargarSet - Recibe la referencia, la clave del set y el valor
- * @returns {JSX.Element} Tarjeta del partido
+ * @return {JSX.Element} Tarjeta del partido
  */
 const PartidoCard = ({
   partido,
