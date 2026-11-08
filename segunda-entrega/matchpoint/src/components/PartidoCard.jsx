@@ -30,14 +30,11 @@ const PartidoCard = ({
     );
   }
 
-  const fin = terminado(partido);
-  const deshabilitado = partido.a == null || partido.b == null;
-  const incompleto = partido.sa !== "" && partido.sb !== "" && !fin;
-  const mensaje =
-    error ||
-    (incompleto
-      ? "Resultado incompleto: gana la dupla que llega a 2 sets."
-      : "");
+  
+const fin = terminado(partido);
+const deshabilitado = partido.a == null || partido.b == null;
+const mensaje = error || "";
+
   const idBase = `sets-${referencia.replaceAll(",", "-")}`;
   const lados = [
     { lado: "a", propio: "sa", rival: "sb", id: partido.a },

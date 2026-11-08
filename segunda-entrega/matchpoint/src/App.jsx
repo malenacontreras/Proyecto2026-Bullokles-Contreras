@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { HashRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import Header from "@/components/Header";
 import Inicio from "@/pages/Inicio";
@@ -30,7 +30,7 @@ const Layout = () => {
  */
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Inicio />} />
@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/organizar" element={<Organizar />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

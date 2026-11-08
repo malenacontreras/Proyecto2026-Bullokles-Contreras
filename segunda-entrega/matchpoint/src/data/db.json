@@ -10,13 +10,13 @@
       "ubicacion": "Córdoba",
       "jugadores": "16 jugadores",
       "precio": 30000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Central+Club+C%C3%B3rdoba",
+      "web": "https://maps.app.goo.gl/ECvCtJw3jbwkaApy7",
       "imagen": "/Imagenes/cancha_red.avif",
       "alt": "Cancha de pádel con red"
     },
     {
       "id": 2,
-      "nombre": "Torneo Palermo Padel",
+      "nombre": "Torneo Palermo Pádel",
       "description": "Liga informal abierta a todos los niveles, pensada para juntar amigos y sumar partidos.",
       "categoria": "Todos los niveles",
       "fecha": "22 - 24 Feb 2027",
@@ -24,7 +24,7 @@
       "ubicacion": "Buenos Aires",
       "jugadores": "12 jugadores",
       "precio": 25000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Palermo+Padel+Buenos+Aires",
+      "web": "https://maps.app.goo.gl/WhSXHJRx4LNceqdAA",
       "imagen": "/Imagenes/paleta_partido.avif",
       "alt": "Pareja festejando un punto durante un partido de pádel"
     },
@@ -38,7 +38,7 @@
       "ubicacion": "Córdoba",
       "jugadores": "8 jugadores",
       "precio": 40000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Nocturno+Nivel+C%C3%B3rdoba",
+      "web": "https://maps.app.goo.gl/Z56UB6veDW8xD3ev7",
       "imagen": "/Imagenes/torneo_img_tapia_volea.jpeg",
       "alt": "Jugador de pádel voleando"
     },
@@ -52,13 +52,13 @@
       "ubicacion": "Rosario",
       "jugadores": "12 jugadores",
       "precio": 28000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Apertura+Rosario+Rosario",
+      "web": "https://maps.app.goo.gl/PZDURqc5DphMDd5g8",
       "imagen": "/Imagenes/torneos_partido.jpeg",
       "alt": "Jugador disputando un partido de pádel"
     },
     {
       "id": 5,
-      "nombre": "Torneo Mardel",
+      "nombre": "Torneo BA",
       "description": "Torneo de verano en la costa, abierto a todos los niveles y con premios para los finalistas.",
       "categoria": "Todos los niveles",
       "fecha": "14 - 16 Dic 2026",
@@ -66,7 +66,7 @@
       "ubicacion": "Buenos Aires",
       "jugadores": "16 jugadores",
       "precio": 35000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Mardel+Buenos+Aires",
+      "web": "https://maps.app.goo.gl/s496wPQAqz7H4Nr66",
       "imagen": "/Imagenes/pelota.jpeg",
       "alt": "Pelota de pádel"
     },
@@ -80,13 +80,13 @@
       "ubicacion": "Santa Fe",
       "jugadores": "10 jugadores",
       "precio": 32000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Santa+Fe+P%C3%A1del+Club+Santa+Fe",
+      "web": "https://maps.app.goo.gl/5VQ7VHmpS89zaKbh8",
       "imagen": "/Imagenes/torneos_jugador.jpeg",
       "alt": "Jugador de pádel con una paleta y un bolso junto a una cancha"
     },
     {
       "id": 7,
-      "nombre": "Copa Padel Zone Indoor",
+      "nombre": "Copa Pádel Zone Indoor",
       "description": "Torneo de primavera para parejas de nivel intermedio, con cruces de eliminación directa.",
       "categoria": "Intermedio",
       "fecha": "17 - 18 Oct 2026",
@@ -94,13 +94,13 @@
       "ubicacion": "Córdoba",
       "jugadores": "16 jugadores",
       "precio": 30000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Copa+Padel+Zone+Indoor+C%C3%B3rdoba",
+      "web": "https://maps.app.goo.gl/4zCrLvHkJf7Z7hhU7",
       "imagen": "/Imagenes/torneo_img_partido.jpg",
       "alt": "Partido de pádel durante un torneo"
     },
     {
       "id": 8,
-      "nombre": "Torneo Pro Padel",
+      "nombre": "Torneo Pro Pádel",
       "description": "Torneo competitivo para parejas de nivel avanzado con eliminación directa y final.",
       "categoria": "Avanzado",
       "fecha": "7 - 8 Nov 2026",
@@ -108,7 +108,7 @@
       "ubicacion": "Buenos Aires",
       "jugadores": "12 jugadores",
       "precio": 45000,
-      "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Pro+Padel+Buenos+Aires",
+      "web": "https://maps.app.goo.gl/kFmkD5AE8r8ijbb3A",
       "imagen": "/Imagenes/pelota_cancha.avif",
       "alt": "Pelota de pádel sobre la cancha"
     }

@@ -16,6 +16,21 @@
 }
 
 
+/* Estilos originales de los controles de filtros */
+.filter-bar input,
+.filter-bar select {
+  width: 100%;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 13px 14px;
+  font: inherit;
+  outline: 0;
+  transition: 0.2s;
+}
+
+
 .filter-bar {
   max-width: 1100px;
   margin: 0 auto 30px;
@@ -65,6 +80,7 @@
   padding: 0 20px;
   cursor: pointer;
   white-space: nowrap;
+  font: revert;
 
   &:hover {
     color: var(--ink);
@@ -222,7 +238,7 @@
   padding: 24px;
 
   h2 {
-    margin: 14px 0;
+    margin: 10px 0;
     font-size: 24px;
   }
 
@@ -230,11 +246,6 @@
     color: var(--muted);
     line-height: 1.6;
     margin: 0 0 16px;
-  }
-
-  .meta-list {
-    margin-top: 16px;
-    margin-bottom: 16px;
   }
 
   a {

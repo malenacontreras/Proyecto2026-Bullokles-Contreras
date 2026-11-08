@@ -114,20 +114,35 @@ const FormularioTorneo = ({ onCrear }) => {
     }
   };
 
-  /**
-   * Valida el formulario y, si está todo bien, crea el torneo.
-   * @method generarTorneo
-   * @return {void}
-   */
-  const generarTorneo = () => {
-    const error = validarNombreTorneo(nombre);
-    setErrorNombre(error);
-    setIntentoCrear(true);
-    if (error || duplas.length < minimo) return;
-    onCrear(
-      crearTorneo({ nombre, descripcion, lugar, sortear, tipo, duplas }),
-    );
-  };
+
+const generarTorneo = () => {
+  const error = validarNombreTorneo(nombre);
+  setErrorNombre(error);
+  setIntentoCrear(true);
+
+  // Si el nombre es inválido, subir hasta ese campo
+  if (error) {
+    const campo = document.getElementById("nombre-torneo");
+
+    campo?.focus({ preventScroll: true });
+    campo?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    return;
+  }
+
+  // Si faltan duplas, mostrar el error sin mover la pantalla
+  if (duplas.length < minimo) {
+    return;
+  }
+
+  // Si todo es correcto, generar el torneo
+  onCrear(crearTorneo({ nombre, descripcion, lugar, sortear, tipo, duplas }));
+};
+
+
 
   return (
     <>
