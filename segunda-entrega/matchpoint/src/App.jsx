@@ -6,7 +6,14 @@ import Torneos from "@/pages/Torneos";
 import Organizar from "@/pages/Organizar";
 import Footer from "@/components/Footer";
 
-function Layout() {
+
+/**
+ * Estructura común de las páginas del sitio.
+ * @method Layout
+ * @return {JSX.Element} Layout con la ruta hija
+ */
+
+const Layout = () => {
   return (
     <>
       <Header />
@@ -16,7 +23,7 @@ function Layout() {
       <Footer />
     </>
   );
-}
+};
 
 const App = () => {
   return (

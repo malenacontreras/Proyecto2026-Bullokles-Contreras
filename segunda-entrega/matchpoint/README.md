@@ -137,7 +137,7 @@ Cada torneo tiene el siguiente formato:
   "ubicacion": "Córdoba",
   "jugadores": "16 jugadores",
   "precio": 30000,
-  "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Central+Club+C%C3%B3rdoba",
+"web": "https://maps.app.goo.gl/ECvCtJw3jbwkaApy7",
   "imagen": "/Imagenes/cancha_red.avif",
   "alt": "Cancha de pádel con red"
 }

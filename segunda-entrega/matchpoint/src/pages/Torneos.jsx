@@ -112,6 +112,7 @@ const Torneos = () => {
           className="search"
           id="buscador"
           placeholder="Buscar torneo..."
+          size={25}
           maxLength={60}
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
