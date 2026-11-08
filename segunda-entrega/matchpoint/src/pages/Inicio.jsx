@@ -80,6 +80,8 @@ const Inicio = () => {
       </section>
 
       {/* Sobre MatchPoint */}
+
+      {/* Sobre MatchPoint */}
       <section className="section">
         <div className="about">
           <div className="about-visual">

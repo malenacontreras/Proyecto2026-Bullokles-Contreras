@@ -6,11 +6,13 @@ import Torneos from "@/pages/Torneos";
 import Organizar from "@/pages/Organizar";
 import Footer from "@/components/Footer";
 
+
 /**
- * Estructura común de todas las páginas: cabecera, contenido de la ruta y pie.
+ * Estructura común de las páginas del sitio.
  * @method Layout
- * @return {JSX.Element} Página con la ruta hija dentro del Outlet
+ * @return {JSX.Element} Layout con la ruta hija
  */
+
 const Layout = () => {
   return (
     <>
@@ -23,11 +25,6 @@ const Layout = () => {
   );
 };
 
-/**
- * Componente principal: define las rutas del sitio.
- * @method App
- * @return {JSX.Element} Aplicación con sus rutas
- */
 const App = () => {
   return (
     <BrowserRouter>

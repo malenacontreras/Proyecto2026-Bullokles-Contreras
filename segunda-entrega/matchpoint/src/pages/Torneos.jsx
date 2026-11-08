@@ -68,7 +68,10 @@ const Torneos = () => {
       .includes(busqueda.trim().toLowerCase());
 
     const coincideMes = !mes || torneo.mes === mes;
-    const coincideNivel = !nivel || torneo.categoria === nivel;
+    const coincideNivel =
+      !nivel ||
+      torneo.categoria === nivel ||
+      torneo.categoria === "Todos los niveles";
     const coincideUbicacion = !ubicacion || torneo.ubicacion === ubicacion;
 
     return (
@@ -94,7 +97,7 @@ const Torneos = () => {
         <div className="eyebrow">Calendario abierto</div>
         <h2 className="page-title">Torneos</h2>
         <p>
-          Explorá los torneos publicados y hacé click en uno para ver sus
+          Explorá los torneos publicados y hacé clic en uno para ver sus
           detalles.
         </p>
       </div>
@@ -103,10 +106,14 @@ const Torneos = () => {
         <label className="visually-hidden" htmlFor="buscador">
           Buscar torneo
         </label>
+
         <input
+          type="search"
           className="search"
           id="buscador"
           placeholder="Buscar torneo..."
+          size={25}
+          maxLength={60}
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
         />
@@ -129,11 +136,12 @@ const Torneos = () => {
           value={nivel}
           onChange={(e) => setNivel(e.target.value)}
         >
-          <option value="">Nivel</option>
+          <option value="" disabled hidden>
+            Nivel
+          </option>
           <option value="Principiante">Principiante</option>
           <option value="Intermedio">Intermedio</option>
           <option value="Avanzado">Avanzado</option>
-          <option value="Todos los niveles">Todos los niveles</option>
         </select>
 
         <label className="visually-hidden" htmlFor="filtro-ubicacion">
@@ -238,7 +246,7 @@ const Torneos = () => {
                 </span>
 
                 <span className="meta-item">
-                  💲 {formatearPrecio(torneoSeleccionado.precio)} por dupla
+                  💰 {formatearPrecio(torneoSeleccionado.precio)} por dupla
                 </span>
               </div>
 

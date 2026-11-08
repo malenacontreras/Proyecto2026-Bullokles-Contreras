@@ -15,7 +15,7 @@ Esta es la **segunda entrega** del proyecto: el sitio de la primera entrega (HTM
 - [Scripts disponibles](#scripts-disponibles)
 - [Mock de servicios](#mock-de-servicios)
 - [Estructura del proyecto](#estructura-del-proyecto)
-- [Vulnerabilidades conocidas](#vulnerabilidades-conocidas)
+- [Verificaciones técnicas](#verificaciones-técnicas)
 - [Autores](#autores)
 
 ## Descripción
@@ -41,9 +41,12 @@ El objetivo del sitio es facilitar la organización de torneos de pádel entre a
 
 | Ruta         | Página               | Descripción                                                             |
 | ------------ | -------------------- | ----------------------------------------------------------------------- |
-| `/`          | **Inicio**           | Presenta MatchPoint y sus principales funcionalidades.                  |
-| `/torneos`   | **Torneos**          | Lista los torneos publicados con buscador, filtros y modal de detalles. |
-| `/organizar` | **Organizar torneo** | Permite crear un torneo, cargar los resultados y ver el análisis final. |
+| `/`        | **Inicio**           | Presenta MatchPoint y sus principales funcionalidades.                  |
+| `/torneos` | **Torneos**          | Lista los torneos publicados con buscador, filtros y modal de detalles. |
+|`/organizar`| **Organizar torneo** | Permite crear un torneo, cargar los resultados y ver el análisis final. |
+
+
+
 
 ## Tecnologías utilizadas
 
@@ -93,7 +96,13 @@ El objetivo del sitio es facilitar la organización de torneos de pádel entre a
    npm run dev
    ```
 
-6. Abrir en el navegador: [http://localhost:5173](http://localhost:5173)
+
+6. Abrir en el navegador la dirección que aparece en la terminal al ejecutar `npm run dev`.
+
+   Por defecto, Vite utiliza `http://localhost:5173/`, pero si ese puerto está ocupado, puede utilizar otro automáticamente.
+
+   Para que funcionen todas las funcionalidades, deben permanecer abiertas las dos terminales: una con `npm run dev` y otra con `npm run services`.
+
 
 > El archivo `.env` ya incluye la dirección del mock (`VITE_BASE_URL = "http://localhost:4000/"`). Si se cambia el puerto del mock, hay que actualizarlo ahí.
 
@@ -101,7 +110,7 @@ El objetivo del sitio es facilitar la organización de torneos de pádel entre a
 
 | Script             | Descripción                                                 |
 | ------------------ | ----------------------------------------------------------- |
-| `npm run dev`      | Levanta la página en modo desarrollo (puerto 5173).         |
+| `npm run dev`      | Inicia la página en modo desarrollo (puerto 5173 por defecto). |
 | `npm run services` | Levanta el mock de servicios con json-server (puerto 4000). |
 | `npm run build`    | Genera la versión de producción en la carpeta `dist`.       |
 | `npm run preview`  | Muestra la versión de producción generada.                  |
@@ -128,7 +137,7 @@ Cada torneo tiene el siguiente formato:
   "ubicacion": "Córdoba",
   "jugadores": "16 jugadores",
   "precio": 30000,
-  "web": "https://www.google.com/maps/search/?api=1&query=Torneo+Central+Club+C%C3%B3rdoba",
+"web": "https://maps.app.goo.gl/ECvCtJw3jbwkaApy7",
   "imagen": "/Imagenes/cancha_red.avif",
   "alt": "Cancha de pádel con red"
 }
@@ -156,18 +165,20 @@ matchpoint/
 └── vite.config.js     Configuración de Vite y del alias @
 ```
 
-## Vulnerabilidades conocidas
+## Verificaciones técnicas
 
-Al ejecutar `npm audit` se informan **4 vulnerabilidades de severidad moderada**. No hay vulnerabilidades altas ni críticas.
+Para verificar el correcto funcionamiento del proyecto se utilizan los siguientes comandos:
 
-| Paquete                 | Severidad | Detalle                                                                                                                         |
-| ----------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `minimatch`             | Moderada  | Posible denegación de servicio ([GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249)).                      |
-| `@eslint/config-array`  | Moderada  | Depende de la versión vulnerable de `minimatch`.                                                                                |
-| `eslint`                | Moderada  | Depende de las versiones vulnerables de `@eslint/config-array` y `minimatch`.                                                   |
-| `@eslint/js`            | Moderada  | Depende de la versión vulnerable de `eslint`.                                                                                   |
+- `npm run build`: genera la versión de producción.
+- `npm run lint`: analiza el código mediante ESLint.
+- `npm audit`: comprueba las vulnerabilidades conocidas de las dependencias.
 
-Todas pertenecen a **ESLint**, una dependencia de desarrollo que solo se usa para revisar el código: no forma parte de la página que se ejecuta en el navegador. La única solución disponible (`npm audit fix --force`) baja ESLint a una versión mayor anterior, lo que rompe la configuración actual. Por eso se decidió mantener la versión actual.
+Durante el desarrollo se detectaron cuatro vulnerabilidades moderadas asociadas a las dependencias de ESLint.
+
+Estas se corrigieron mediante la actualización de `minimatch` a la versión 11.0.3, utilizando `overrides` en `package.json`.
+
+Después de actualizar las dependencias, `npm install` informó 0 vulnerabilidades.
+
 
 ## Autores
 

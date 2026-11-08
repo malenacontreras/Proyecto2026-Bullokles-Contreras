@@ -27,5 +27,8 @@
     "json-server": "^1.0.0-beta.15",
     "sass": "^1.108.0",
     "vite": "^8.3.6"
+  },
+  "overrides": {
+    "minimatch": "11.0.3"
   }
 }
