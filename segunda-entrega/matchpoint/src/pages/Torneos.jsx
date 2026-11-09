@@ -34,6 +34,10 @@ const Torneos = () => {
   const [torneoSeleccionado, setTorneoSeleccionado] = useState(null);
 
   useEffect(() => {
+    document.title = "MatchPoint | Torneos";
+  }, []);
+
+  useEffect(() => {
     /**
      * Trae los torneos del mock y avisa si no se pudieron cargar.
      * @method cargarTorneos

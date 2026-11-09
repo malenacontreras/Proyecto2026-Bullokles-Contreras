@@ -7,6 +7,7 @@ Proyecto desarrollado para la materia **Taller de Desarrollo Web** de la Univers
 
 - [Descripción](#descripción)
 - [Entregas](#entregas)
+- [Tecnologías](#tecnologías)
 - [Sitio web](#sitio-web)
 - [Autoras](#autoras)
 
@@ -28,8 +29,14 @@ Migración a React, Vite, React Router y Sass, con un mock de servicios mediante
 
 [Ver documentación y pasos de ejecución](segunda-entrega/matchpoint/README.md)
 
-## Sitio web
+## Tecnologías
 
+| Entrega             | Tecnologías                                        |
+| ------------------- | -------------------------------------------------- |
+| **Primera entrega** | HTML5, CSS3 y JavaScript                            |
+| **Segunda entrega** | React, Vite, React Router DOM, Sass y json-server   |
+
+## Sitio web
 [Ver la primera entrega publicada en GitHub Pages](https://malenacontreras.github.io/Proyecto2026-Bullokles-Contreras/primera-entrega/)
 
 ## Autoras

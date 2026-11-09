@@ -61,26 +61,32 @@ const FormularioTorneo = ({ onCrear }) => {
   };
 
   /**
-   * Agrega la dupla escrita si es válida.
+   * Agrega la dupla escrita. Si es inválida avisa con alert y blanquea el campo.
    * @method agregarDupla
    * @return {void}
    */
   const agregarDupla = () => {
     const error = validarDupla(dupla, duplas);
-    setErrorDupla(error);
-    if (error) return;
-    setDuplas([...duplas, dupla.trim()]);
+
+    if (error) {
+      window.alert(error);
+    } else {
+      setDuplas([...duplas, dupla.trim()]);
+    }
+
     setDupla("");
+    setErrorDupla("");
+    document.getElementById("nombre-dupla")?.focus();
   };
 
   /**
-   * Carga las 8 duplas de ejemplo si no se supera el máximo.
+   * Carga las 8 duplas de ejemplo. Si se supera el máximo avisa con alert.
    * @method cargarEjemplo
    * @return {void}
    */
   const cargarEjemplo = () => {
     if (duplas.length + DUPLAS_EJEMPLO.length > MAX_DUPLAS) {
-      setErrorDupla(
+      window.alert(
         `No se pueden cargar las 8 duplas de ejemplo: el máximo es ${MAX_DUPLAS} duplas.`,
       );
       return;
@@ -114,35 +120,34 @@ const FormularioTorneo = ({ onCrear }) => {
     }
   };
 
+  /**
+   * Genera el torneo. Si los datos son inválidos avisa con alert y blanquea el campo.
+   * @method generarTorneo
+   * @return {void}
+   */
+  const generarTorneo = () => {
+    const error = validarNombreTorneo(nombre);
+    setErrorNombre(error);
+    setIntentoCrear(true);
 
-const generarTorneo = () => {
-  const error = validarNombreTorneo(nombre);
-  setErrorNombre(error);
-  setIntentoCrear(true);
+    if (error) {
+      window.alert(error);
+      setNombre("");
+      const campo = document.getElementById("nombre-torneo");
+      campo?.focus({ preventScroll: true });
+      campo?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
 
-  // Si el nombre es inválido, subir hasta ese campo
-  if (error) {
-    const campo = document.getElementById("nombre-torneo");
+    if (duplas.length < minimo) {
+      window.alert(
+        `Para este formato necesitás al menos ${minimo} duplas (tenés ${duplas.length}).`,
+      );
+      return;
+    }
 
-    campo?.focus({ preventScroll: true });
-    campo?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-
-    return;
-  }
-
-  // Si faltan duplas, mostrar el error sin mover la pantalla
-  if (duplas.length < minimo) {
-    return;
-  }
-
-  // Si todo es correcto, generar el torneo
-  onCrear(crearTorneo({ nombre, descripcion, lugar, sortear, tipo, duplas }));
-};
-
-
+    onCrear(crearTorneo({ nombre, descripcion, lugar, sortear, tipo, duplas }));
+  };
 
   return (
     <>
@@ -151,6 +156,7 @@ const generarTorneo = () => {
         <label htmlFor="nombre-torneo">Nombre del torneo</label>
         <input
           id="nombre-torneo"
+          size={40}
           maxLength={50}
           placeholder="Copa Verano 2026"
           value={nombre}
@@ -177,6 +183,7 @@ const generarTorneo = () => {
         <label htmlFor="lugar-torneo">Lugar (opcional)</label>
         <input
           id="lugar-torneo"
+          size={30}
           maxLength={100}
           placeholder="Ej: Pádel Club Palermo, Buenos Aires"
           value={lugar}
@@ -213,6 +220,7 @@ const generarTorneo = () => {
           </label>
           <input
             id="nombre-dupla"
+            size={40}
             maxLength={40}
             placeholder="Nombre de la dupla, ej: Gómez / Pérez"
             value={dupla}

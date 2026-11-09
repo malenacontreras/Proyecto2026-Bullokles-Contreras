@@ -32,7 +32,6 @@ body:has(.wrap) {
     margin: 8px 0 0;
   }
 
-  // Tarjetas
   .card {
     background: var(--paper);
     border: 1px solid var(--line);
@@ -73,7 +72,6 @@ body:has(.wrap) {
     }
   }
 
-  // Formulario
   label {
     display: block;
     font-size: 13px;
@@ -123,7 +121,6 @@ body:has(.wrap) {
     border-color: var(--bad);
   }
 
-  // Botones
   button {
     cursor: pointer;
     border: 0;
@@ -175,7 +172,6 @@ body:has(.wrap) {
     }
   }
 
-  // Duplas
   .chips {
     display: flex;
     flex-wrap: wrap;
@@ -205,7 +201,6 @@ body:has(.wrap) {
     }
   }
 
-  // Tipos de torneo
   .types {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -248,7 +243,6 @@ body:has(.wrap) {
     background: var(--mist);
   }
 
-  // Pestañas y progreso
   .tabs {
     display: flex;
     gap: 8px;
@@ -299,7 +293,6 @@ body:has(.wrap) {
     }
   }
 
-  // Partidos
   .m {
     background: #fff;
     border-radius: 12px;
@@ -385,7 +378,6 @@ body:has(.wrap) {
     border-radius: 8px;
   }
 
-  // Tablas de posiciones
   .tw {
     overflow-x: auto;
     border: 1px solid var(--line);
@@ -435,7 +427,6 @@ body:has(.wrap) {
     }
   }
 
-  // Cuadro de eliminación
   .bracket {
     display: flex;
     gap: 20px;
@@ -465,7 +456,6 @@ body:has(.wrap) {
     gap: 20px;
   }
 
-  // Análisis
   .champ {
     text-align: center;
     padding: 44px 24px;

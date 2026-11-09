@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 /**
@@ -7,9 +8,13 @@ import Button from "@/components/Button";
  */
 const Inicio = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "MatchPoint | Inicio";
+  }, []);
+
   return (
     <>
-      {/* Sección principal */}
       <section className="hero">
         <div className="hero-copy">
           <div className="eyebrow">Torneos entre amigos</div>
@@ -42,7 +47,6 @@ const Inicio = () => {
         </div>
       </section>
 
-      {/* Funcionalidades */}
       <section className="section">
         <div className="section-heading">
           <h2>Todo lo que necesitás para tu torneo</h2>
@@ -79,9 +83,6 @@ const Inicio = () => {
         </div>
       </section>
 
-      {/* Sobre MatchPoint */}
-
-      {/* Sobre MatchPoint */}
       <section className="section">
         <div className="about">
           <div className="about-visual">
