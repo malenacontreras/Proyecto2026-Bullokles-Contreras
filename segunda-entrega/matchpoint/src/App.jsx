@@ -25,6 +25,11 @@ const Layout = () => {
   );
 };
 
+/**
+ * Componente principal: define las rutas del sitio.
+ * @method App
+ * @return {JSX.Element} Rutas de la aplicación
+ */
 const App = () => {
   return (
     <BrowserRouter>

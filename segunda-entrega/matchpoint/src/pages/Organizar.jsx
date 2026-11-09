@@ -21,6 +21,10 @@ const Organizar = () => {
   const [erroresSets, setErroresSets] = useState({});
 
   useEffect(() => {
+    document.title = "MatchPoint | Organizar torneo";
+  }, []);
+
+  useEffect(() => {
     if (torneo) {
       localStorage.setItem(CLAVE_TORNEO, JSON.stringify(torneo));
     } else {
@@ -29,7 +33,7 @@ const Organizar = () => {
   }, [torneo]);
 
   /**
-   * Carga los sets de un partido y guarda el error si el valor no es válido.
+   * Carga los sets de un partido. Si el valor es inválido avisa con alert y blanquea el campo.
    * @method actualizarSet
    * @param {string} referencia - Referencia del partido
    * @param {string} clave - "sa" o "sb" según la dupla
@@ -38,6 +42,11 @@ const Organizar = () => {
    */
   const actualizarSet = (referencia, clave, valor) => {
     const resultado = cargarSet(torneo, referencia, clave, valor);
+
+    if (resultado.error) {
+      window.alert(resultado.error);
+    }
+
     setTorneo(resultado.torneo);
     setErroresSets({ ...erroresSets, [referencia]: resultado.error });
   };

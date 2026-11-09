@@ -30,10 +30,9 @@ const PartidoCard = ({
     );
   }
 
-  
-const fin = terminado(partido);
-const deshabilitado = partido.a == null || partido.b == null;
-const mensaje = error || "";
+  const fin = terminado(partido);
+  const deshabilitado = partido.a == null || partido.b == null;
+  const mensaje = error || "";
 
   const idBase = `sets-${referencia.replaceAll(",", "-")}`;
   const lados = [
